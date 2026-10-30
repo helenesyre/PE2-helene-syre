@@ -5,6 +5,32 @@ export default function Register() {
       <p className="text-lg text-gray-600">
         Please fill out the form to create an account.
       </p>
+      <div className="flex gap-4">
+        <a
+          href="/coming-soon"
+          className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
+        >
+          Coming Soon
+        </a>
+        <a
+          href="/login"
+          className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
+        >
+          Login
+        </a>
+        <a
+          href="/profile"
+          className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
+        >
+          Profile
+        </a>
+        <a
+          href="/venue/[venue_id]"
+          className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
+        >
+          Venue
+        </a>
+      </div>
     </div>
   );
 }
