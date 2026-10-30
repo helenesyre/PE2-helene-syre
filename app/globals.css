@@ -1,26 +1,196 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Fonts */
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-unbounded: "Unbounded", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Colors */
+@theme {
+  /* Neutrals */
+  /* Cloud white */
+  --color-cloud-white-50: #fefefe;
+  --color-cloud-white-100: #fcfcfc;
+  --color-cloud-white-200: #fbfbfb;
+  --color-cloud-white-300: #f9f9f9;
+  --color-cloud-white-400: #f8f8f8;
+  --color-cloud-white-500: #f6f6f6;
+  --color-cloud-white-600: #e0e0e0;
+  --color-cloud-white-700: #afafaf;
+  --color-cloud-white-800: #878787;
+  --color-cloud-white-900: #676767;
+
+  /* Warm ivory */
+  --color-warm-ivory-50: #fefdfc;
+  --color-warm-ivory-100: #fbf9f7;
+  --color-warm-ivory-200: #f9f7f3;
+  --color-warm-ivory-300: #f6f3ed;
+  --color-warm-ivory-400: #f5f1e9;
+  --color-warm-ivory-500: #f2ede4;
+  --color-warm-ivory-600: #dcd8cf;
+  --color-warm-ivory-700: #aca8a2;
+  --color-warm-ivory-800: #85827d;
+  --color-warm-ivory-900: #666460;
+
+  /* Sand */
+  --color-sand-50: #fbf9f6;
+  --color-sand-100: #f3ece2;
+  --color-sand-200: #eee3d4;
+  --color-sand-300: #e6d6c1;
+  --color-sand-400: #e1ceb5;
+  --color-sand-500: #d9c2a2;
+  --color-sand-600: #c5b193;
+  --color-sand-700: #9a8a73;
+  --color-sand-800: #776b59;
+  --color-sand-900: #5b5144;
+
+  /* Stone */
+  --color-stone-50: #f9f9f8;
+  --color-stone-100: #f4f4f3;
+  --color-stone-200: #e6e4e3;
+  --color-stone-300: #d5d2d0;
+  --color-stone-400: #a7a19d;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+
+  /* Blues */
+  /* Seafoam */
+  --color-seafoam-50: #f3fafa;
+  --color-seafoam-100: #daefef;
+  --color-seafoam-200: #c9e7e7;
+  --color-seafoam-300: #b0dbdb;
+  --color-seafoam-400: #a1d5d5;
+  --color-seafoam-500: #89caca;
+  --color-seafoam-600: #7db8b8;
+  --color-seafoam-700: #618f8f;
+  --color-seafoam-800: #4b6f6f;
+  --color-seafoam-900: #3a5555;
+
+  /* Ocean */
+  --color-ocean-50: #e8f0f1;
+  --color-ocean-100: #b9d1d3;
+  --color-ocean-200: #97babd;
+  --color-ocean-300: #679b9f;
+  --color-ocean-400: #49878d;
+  --color-ocean-500: #1c6970;
+  --color-ocean-600: #196066;
+  --color-ocean-700: #144b50;
+  --color-ocean-800: #0f3a3e;
+  --color-ocean-900: #0c2c2f;
+
+  /* Greens */
+  /* Lime */
+  --color-lime-50: #fbfff4;
+  --color-lime-100: #f4fedd;
+  --color-lime-200: #eefecc;
+  --color-lime-300: #e6feb5;
+  --color-lime-400: #e1fda7;
+  --color-lime-500: #dafd91;
+  --color-lime-600: #c6e684;
+  --color-lime-700: #9bb467;
+  --color-lime-800: #788b50;
+  --color-lime-900: #5c6a3d;
+
+  /* Fern */
+  --color-fern-50: #ecf0e8;
+  --color-fern-100: #c3d1b6;
+  --color-fern-200: #a6ba93;
+  --color-fern-300: #7e9b62;
+  --color-fern-400: #658843;
+  --color-fern-500: #3e6a14;
+  --color-fern-600: #386012;
+  --color-fern-700: #2c4b0e;
+  --color-fern-800: #223a0b;
+  --color-fern-900: #1a2d08;
+
+  /* Deep forest */
+  --color-deep-forest-50: #e7e9e9;
+  --color-deep-forest-100: #b3bbba;
+  --color-deep-forest-200: #8e9b98;
+  --color-deep-forest-300: #5b6d6a;
+  --color-deep-forest-400: #3b514d;
+  --color-deep-forest-500: #0a2520;
+  --color-deep-forest-600: #09221d;
+  --color-deep-forest-700: #071a17;
+  --color-deep-forest-800: #061412;
+  --color-deep-forest-900: #04100d;
+
+  /* Feedback */
+  /* Error / Danger */
+  --color-error-bg: var(--color-red-50);
+  --color-error-border: var(--color-red-200);
+  --color-error-text: var(--color-red-800);
+
+  /* Warning */
+  --color-warning-bg: var(--color-amber-50);
+  --color-warning-border: var(--color-amber-200);
+  --color-warning-text: var(--color-amber-900);
+
+  /* Success */
+  --color-success-bg: var(--color-green-50);
+  --color-success-border: var(--color-green-200);
+  --color-success-text: var(--color-green-900);
+
+  /* Info */
+  --color-info-bg: var(--color-blue-50);
+  --color-info-border: var(--color-blue-200);
+  --color-info-text: var(--color-blue-800);
+
+  /* Note */
+  --color-note-bg: var(--color-gray-50);
+  --color-note-border: var(--color-gray-200);
+  --color-note-text: var(--color-gray-800);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  h1 {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl font-bold;
+  }
+
+  h4 {
+    @apply text-lg font-bold;
+  }
+
+  h5 {
+    @apply text-base font-bold;
+  }
+
+  h6 {
+    @apply text-sm font-bold;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    @apply text-deep-forest-500;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply font-inter;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-unbounded;
 }
