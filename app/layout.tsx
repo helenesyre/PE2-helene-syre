@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Unbounded } from "next/font/google";
 import "./globals.css";
+import Navbar from "./_components/navigation/Navbar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,7 +24,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${unbounded.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {/* Navigation */}
+        <Navbar />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }

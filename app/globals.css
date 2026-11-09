@@ -180,10 +180,15 @@
   p {
     @apply text-deep-forest-500;
   }
+
+  .lucide {
+    stroke-width: 1.5px;
+  }
 }
 
 body {
   @apply font-inter;
+  background-color: var(--color-cloud-white-500);
 }
 
 h1,
