@@ -39,10 +39,16 @@ export default function Home() {
               Profile
             </a>
             <a
-              href="/venue/[venue_id]"
+              href="/venues"
               className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
             >
               Venue
+            </a>
+            <a
+              href="/venues/[venue_id]"
+              className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
+            >
+              Specific venue
             </a>
           </div>
         </div>
