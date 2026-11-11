@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-/* Fonts */
-@theme {
-  --font-inter: "Inter", sans-serif;
-  --font-unbounded: "Unbounded", sans-serif;
+/* Fonts (variables are set by next/font in layout.tsx) */
+@theme inline {
+  --font-body: var(--font-poppins), sans-serif;
+  --font-heading: var(--font-unbounded), sans-serif;
 }
 
 /* Colors */
@@ -146,29 +146,43 @@
   --color-note-text: var(--color-gray-800);
 }
 
+/* Typography */
 @layer base {
+  body {
+    @apply font-body text-base bg-cloud-white-500;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+
   h1 {
-    @apply text-3xl md:text-4xl font-bold;
+    @apply text-3xl md:text-5xl font-semibold;
   }
 
   h2 {
-    @apply text-2xl md:text-3xl font-bold;
+    @apply text-2xl md:text-3xl font-semibold;
   }
 
   h3 {
-    @apply text-xl md:text-2xl font-bold;
+    @apply text-xl md:text-2xl font-medium;
   }
 
   h4 {
-    @apply text-lg font-bold;
+    @apply text-lg font-medium;
   }
 
   h5 {
-    @apply text-base font-bold;
+    @apply text-base font-medium;
   }
 
   h6 {
-    @apply text-sm font-bold;
+    @apply text-sm font-medium;
   }
 
   h1,
@@ -186,16 +200,24 @@
   }
 }
 
-body {
-  @apply font-inter;
-  background-color: var(--color-cloud-white-500);
-}
+@layer components {
+  .lead {
+    @apply text-lg;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-unbounded;
+  .small {
+    @apply text-sm;
+  }
+
+  .link {
+    @apply font-medium underline underline-offset-4;
+  }
+
+  .label {
+    @apply text-xs font-semibold uppercase tracking-wider;
+  }
+
+  .button {
+    @apply text-base font-semibold;
+  }
 }

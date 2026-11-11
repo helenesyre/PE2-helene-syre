@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Unbounded } from "next/font/google";
+import { Poppins, Unbounded } from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/navigation/Navbar";
 
-const inter = Inter({
-  variable: "--font-inter",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 const unbounded = Unbounded({
@@ -22,12 +23,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${unbounded.variable} h-full antialiased`}
+      className={`${poppins.variable} ${unbounded.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {/* Navigation */}
         <Navbar />
-        <main>{children}</main>
+        <main className="flex flex-col flex-1">{children}</main>
+        {/* Footer */}
+        <Footer />
       </body>
     </html>
   );
