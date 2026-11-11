@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { Poppins, Unbounded } from "next/font/google";
 import "./globals.css";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import Navbar from "./_components/navigation/Navbar";
+import Footer from "./_components/footer/Footer";
+
+// Font Awesome CSS is imported above, so stop it injecting its own at runtime
+config.autoAddCss = false;
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -30,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar />
         <main className="flex flex-col flex-1">{children}</main>
         {/* Footer */}
+        <Footer />
       </body>
     </html>
   );
