@@ -1,6 +1,6 @@
 export default function Venues() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-100px)] bg-gray-100">
       <h1 className="text-4xl font-bold mb-4">Venue</h1>
       <p className="text-lg text-gray-600">This is the venue page.</p>
       <div className="flex gap-4">
