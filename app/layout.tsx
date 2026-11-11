@@ -30,7 +30,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar />
         <main className="flex flex-col flex-1">{children}</main>
         {/* Footer */}
-        <Footer />
       </body>
     </html>
   );
