@@ -216,4 +216,19 @@
   .button {
     @apply text-base font-semibold;
   }
+
+  /* Form font sizes */
+  label {
+    @apply text-base font-semibold;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply text-base;
+  }
+
+  .form-message {
+    @apply text-sm;
+  }
 }
