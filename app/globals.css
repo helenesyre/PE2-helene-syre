@@ -194,10 +194,6 @@
   p {
     @apply text-deep-forest-500;
   }
-
-  .lucide {
-    stroke-width: 1.5px;
-  }
 }
 
 @layer components {

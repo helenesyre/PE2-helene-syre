@@ -121,7 +121,11 @@ export default function Navbar() {
             aria-expanded={isOpen}
             className="p-2 rounded-full border border-deep-forest-500 cursor-pointer"
           >
-            {isOpen ? <X size={18} /> : <Menu size={18} />}
+            {isOpen ? (
+              <X size={18} strokeWidth={1.5} />
+            ) : (
+              <Menu size={18} strokeWidth={1.5} />
+            )}
           </button>
           {isOpen && (
             <div
@@ -145,7 +149,7 @@ export default function Navbar() {
                         onClick={toggleMenu}
                         className={`flex flex-row items-center gap-2 py-1.5 px-3 text-sm hover:bg-seafoam-100 hover:font-medium transition-all duration-300 rounded-md`}
                       >
-                        {Icon && <Icon size={20} />}
+                        {Icon && <Icon size={20} strokeWidth={1.5} />}
                         {link.label}
                       </Link>
                     );

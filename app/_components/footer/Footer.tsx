@@ -28,7 +28,7 @@ export default function Footer() {
               aria-label="Subscribe"
               className="shrink-0 rounded-full cursor-pointer hover:text-ocean-500 transition-all duration-30"
             >
-              <CircleArrowRight size={24} />
+              <CircleArrowRight size={24} strokeWidth={1.5} />
             </button>
           </form>
         </div>
