@@ -11,7 +11,7 @@ export default function Register() {
       </div>
       <form className="w-full md:max-w-md">
         <div className="flex flex-col gap-2 mb-4">
-          <label htmlFor="email" className="ml-4">
+          <label htmlFor="username" className="ml-4">
             Username
           </label>
           <input
