@@ -197,23 +197,23 @@
 }
 
 @layer components {
-  .lead {
+  .lead-text {
     @apply text-lg;
   }
 
-  .small {
+  .small-text {
     @apply text-sm;
   }
 
-  .link {
+  .link-text {
     @apply font-medium underline underline-offset-4;
   }
 
-  .label {
+  .label-text {
     @apply text-xs font-semibold uppercase tracking-wider;
   }
 
-  .button {
+  .button-text {
     @apply text-base font-semibold;
   }
 

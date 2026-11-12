@@ -57,7 +57,7 @@ export default function Footer() {
             </li>
           </ul>
           {/* Policy and terms */}
-          <ul className="flex md:flex-col gap-6 md:gap-2 small">
+          <ul className="flex md:flex-col gap-6 md:gap-2 small-text">
             <li>
               <Link href={"/coming-soon"} className="hover:text-ocean-500">
                 Privacy policy
@@ -106,7 +106,9 @@ export default function Footer() {
             </li>
           </ul>
           {/* Copyright */}
-          <p className="small">&copy; 2026 Holidaze. All rights reserved.</p>
+          <p className="small-text">
+            &copy; 2026 Holidaze. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

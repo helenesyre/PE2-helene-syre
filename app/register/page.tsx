@@ -93,7 +93,7 @@ export default function Register() {
             <label htmlFor="venue-manager">
               Register user as a venue manager
             </label>
-            <p className="small text-deep-forest-400">
+            <p className="small-text text-deep-forest-400">
               Venue managers can create venues and manage their bookings. Click
               here if you want a manager role.
             </p>
@@ -101,7 +101,7 @@ export default function Register() {
         </div>
         <button
           type="submit"
-          className="w-full bg-deep-forest-500 text-cloud-white-500 button rounded-4xl px-4 py-2.5 my-6 cursor-pointer hover:bg-deep-forest-400 transition-all duration-300"
+          className="w-full bg-deep-forest-500 text-cloud-white-500 button-text rounded-4xl px-4 py-2.5 my-6 cursor-pointer hover:bg-deep-forest-400 transition-all duration-300"
         >
           Create account
           <UserRoundPlus
