@@ -1,40 +1,7 @@
 export default function VenueDetails() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-100px)] bg-gray-100">
-      <h1 className="text-4xl font-bold mb-4">Venue Details</h1>
-      <p className="text-lg text-gray-600">This is the specific venue page.</p>
-      <div className="flex gap-4">
-        <a
-          href="/coming-soon"
-          className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
-        >
-          Coming Soon
-        </a>
-        <a
-          href="/login"
-          className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
-        >
-          Login
-        </a>
-        <a
-          href="/register"
-          className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
-        >
-          Register
-        </a>
-        <a
-          href="/profile"
-          className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
-        >
-          Profile
-        </a>
-        <a
-          href="/venues"
-          className="p-4 rounded-4xl border border-ocean-500 text-ocean-500 hover:text-cloud-white-500 hover:bg-ocean-500 transition-all duration-300"
-        >
-          Venue
-        </a>
-      </div>
+    <div className="mt-12 mb-24 px-6 md:px-10 lg:px-16">
+      <h1>Venue Details</h1>
     </div>
   );
 }
