@@ -1,11 +1,12 @@
 import { Building, MapPinned, Search } from "lucide-react";
 import Image from "next/image";
+import DestinationGrid from "./_components/grids/DestinationGrid";
 
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 z-0 relative">
       {/* Hero image */}
-      <section className="relative h-[820px] p-6 md:p-12">
+      <section className="relative h-205 p-6 md:p-12">
         {/* Hero image */}
         <Image
           src="/images/hero.jpg"
@@ -23,20 +24,22 @@ export default function Home() {
           </p>
         </div>
       </section>
-      {/* Content section */}
-      <section className="px-6 md:px-10 lg:px-16">
-        <div>
+      {/* Tourism section */}
+      <section className="mt-24 px-6 md:px-10 lg:px-16">
+        <div className="flex flex-col lg:flex-row justify-between gap-2 mb-10">
           <div>
-            <span className="label-text">Best locations</span>
+            <span className="label-text text-ocean-700">Best locations</span>
             <h2>Tourism around the world</h2>
           </div>
-          <p>
+          <p className="md:max-w-md lg:max-w-sm xl:max-w-md text-left lg:text-right">
             Extraordinary natural beauty, enjoy the rich culture, and experience
             the friendliness of the local people.
           </p>
         </div>
+        <DestinationGrid />
       </section>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 md:px-10 lg:px-16">
+      {/* How it works section */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 my-31.5 px-6 md:px-10 lg:px-16">
         {/* Image */}
         <div className="relative w-full aspect-4/3 lg:aspect-9/10 md:h-full md:min-h-120 rounded-2xl overflow-hidden">
           <Image
@@ -50,7 +53,7 @@ export default function Home() {
         {/* Steps */}
         <div className="flex flex-col gap-8 justify-center">
           <div className="flex flex-col gap-2">
-            <span className="label-text">How it works</span>
+            <span className="label-text text-ocean-700">How it works</span>
             <h2>Your stay in three easy steps</h2>
           </div>
           <div className="flex flex-col gap-4">
@@ -98,8 +101,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Popular places section */}
       <section className="px-6 md:px-10 lg:px-16">
-        <span className="label-text">Popular places</span>
+        <span className="label-text text-ocean-700">Popular places</span>
         <h2>Find your next venue today</h2>
       </section>
     </div>

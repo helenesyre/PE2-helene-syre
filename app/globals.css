@@ -213,6 +213,10 @@
     @apply text-xs font-semibold uppercase tracking-wider;
   }
 
+  .label-text-lowercase {
+    @apply text-xs font-semibold tracking-wider;
+  }
+
   .button-text {
     @apply text-base font-semibold;
   }
