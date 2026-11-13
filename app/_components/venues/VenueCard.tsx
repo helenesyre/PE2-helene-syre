@@ -6,7 +6,7 @@ export default function VenueCard() {
   return (
     <div className="p-3 bg-cloud-white-50 rounded-lg flex flex-col gap-4">
       {/* Image */}
-      <Link href="/venues" className="relative w-full h-50">
+      <Link href="/venues/1" className="relative w-full h-50">
         <Image
           src="/images/placeholder.png"
           alt="Venue"
@@ -41,7 +41,7 @@ export default function VenueCard() {
           <p className="small-text text-stone-700">/ night</p>
         </div>
         <Link
-          href={"/venues"}
+          href={"/venues/1"}
           className="button-text px-4 py-1.5 rounded-full cursor-pointer bg-ocean-500 text-cloud-white-500 hover:bg-ocean-700 hover:shadow-md transition-all duration-300"
         >
           View
