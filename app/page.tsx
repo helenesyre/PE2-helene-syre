@@ -1,7 +1,7 @@
 import { Building, MapPinned, Search } from "lucide-react";
 import Image from "next/image";
 import DestinationGrid from "./_components/grids/DestinationGrid";
-import PopularPlacesGrid from "./_components/venues/PopularPlacesGrid";
+import PopularPlacesGrid from "./_components/grids/PopularPlacesGrid";
 
 export default function Home() {
   return (

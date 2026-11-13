@@ -1,4 +1,4 @@
-import VenueCard from "./VenueCard";
+import VenueCard from "../venues/VenueCard";
 
 export default function PopularPlacesGrid() {
   return (
