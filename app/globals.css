@@ -217,8 +217,16 @@
     @apply text-xs font-semibold tracking-wider;
   }
 
+  .tag-text {
+    @apply text-xs font-semibold;
+  }
+
   .button-text {
     @apply text-base font-semibold;
+  }
+
+  .price-text {
+    @apply text-lg font-semibold font-heading text-ocean-500;
   }
 
   /* Form font sizes */

@@ -1,6 +1,7 @@
 import { Building, MapPinned, Search } from "lucide-react";
 import Image from "next/image";
 import DestinationGrid from "./_components/grids/DestinationGrid";
+import PopularPlacesGrid from "./_components/venues/PopularPlacesGrid";
 
 export default function Home() {
   return (
@@ -102,9 +103,12 @@ export default function Home() {
         </div>
       </section>
       {/* Popular places section */}
-      <section className="px-6 md:px-10 lg:px-16">
-        <span className="label-text text-ocean-700">Popular places</span>
-        <h2>Find your next venue today</h2>
+      <section className="mb-24 px-6 md:px-10 lg:px-16">
+        <div className="mb-10">
+          <span className="label-text text-ocean-700">Popular places</span>
+          <h2>Find your next venue today</h2>
+        </div>
+        <PopularPlacesGrid />
       </section>
     </div>
   );
