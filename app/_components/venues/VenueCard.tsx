@@ -6,13 +6,13 @@ export default function VenueCard() {
   return (
     <div className="p-3 bg-cloud-white-50 rounded-lg flex flex-col gap-4">
       {/* Image */}
-      <Link href="/venues/1" className="relative w-full h-50">
+      <Link href="/venues/1" className="relative w-full h-64 md:h-50">
         <Image
           src="/images/placeholder.png"
           alt="Venue"
           fill
           loading="eager"
-          sizes="(min-width: 768px) 33vw, 100vw"
+          sizes="33vw, 100vw"
           className="object-cover rounded-lg"
         />
       </Link>
@@ -35,7 +35,7 @@ export default function VenueCard() {
         </div>
       </div>
       {/* Price and view button */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-3 border-t border-cloud-white-600">
         <div className="flex items-center gap-2">
           <p className="price-text">NOK 2450</p>
           <p className="small-text text-stone-700">/ night</p>
