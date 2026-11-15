@@ -62,3 +62,46 @@
 **After using AI:** I looked over and checked if it worked before sending the code. I removed some unnecessary parts.
 
 ---
+
+## Input validation bug
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 14 November 2026
+
+**Purpose:** Find confirm password validation bug.
+
+**Outcome:** It pointed out a input name override bug caused by name being set by react-hook-form / zod first, then being overriden by a the input field name value. Once the manually set input field name value was removed it fixed the validation error bug.
+
+**After using AI:** Once the name error was pointed out i corrected it by removing the value from input. That fixed the bug.
+
+---
+
+## LoginForm NextRouter not mounted error
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 14 November 2026
+
+**Purpose:** Fix redirect navigation error
+
+**Outcome:** The AI pointed out that i was using the wrong import. Instead of importing router from "next/navigation" i was importing it from "next/router"
+
+**After using AI:** Changed the import and it the code worked fine after the change.
+
+---
+
+## Passing form values to mutate function
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 14 November 2026
+
+**Purpose:** Fix mutate on form submission not working
+
+**Outcome:** The AI pointed out that there was a bug on line 55 in the login form component and proposed a fix for the bug.
+
+- Changed `handleSubmit(mutation.mutate())` to `handleSubmit((data) => mutation.mutate(data))`
+- Also fixed a env variable bug that was found, where the env variable was not publicly accessible.
+
+**After using AI:** I verfied the fix worked and sent the code.

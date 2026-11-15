@@ -1,4 +1,4 @@
-import { EyeClosed, LogIn } from "lucide-react";
+import LoginForm from "./LoginForm";
 
 export default function Login() {
   return (
@@ -9,51 +9,7 @@ export default function Login() {
           Log in to manage your bookings or venues.
         </p>
       </div>
-      <form className="w-full md:max-w-md">
-        <div className="flex flex-col gap-2 mb-4">
-          <label htmlFor="email" className="ml-4">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            autoComplete="email"
-            placeholder="example@stud.noroff.no"
-            className="bg-cloud-white-50 border border-cloud-white-600 rounded-4xl p-4 w-full shadow-[inset_0_4px_4px_0_rgba(0,0,0,0.25)]"
-          />
-        </div>
-        <div className="flex flex-col gap-2 mb-4">
-          <label htmlFor="password" className="ml-4">
-            Password
-          </label>
-          <div className="relative">
-            <input
-              type="password"
-              id="password"
-              name="password"
-              autoComplete="current-password"
-              placeholder="Enter your password"
-              className="bg-cloud-white-50 border border-cloud-white-600 rounded-4xl p-4 pr-12 w-full shadow-[inset_0_4px_4px_0_rgba(0,0,0,0.25)]"
-            />
-            {/* Button to toggle password visibility */}
-            <button
-              type="button"
-              aria-label="Show password"
-              className="absolute right-4 inset-y-0 inset-e-0 cursor-pointer text-deep-forest-400"
-            >
-              <EyeClosed size={20} strokeWidth={2} />
-            </button>
-          </div>
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-deep-forest-500 text-cloud-white-500 button-text rounded-4xl px-4 py-2.5 my-6 cursor-pointer hover:bg-deep-forest-400 transition-all duration-300"
-        >
-          Login
-          <LogIn size={20} strokeWidth={2} className="ml-2 inline-block" />
-        </button>
-      </form>
+      <LoginForm />
       <p>
         Don&#39;t have an account?{" "}
         <a

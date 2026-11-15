@@ -5,6 +5,8 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Navbar from "./_components/navigation/Navbar";
 import Footer from "./_components/footer/Footer";
+import { Providers } from "./providers";
+import ToastProvider from "./_components/toast/ToastProvider";
 
 // Font Awesome CSS is imported above, so stop it injecting its own at runtime
 config.autoAddCss = false;
@@ -31,10 +33,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${poppins.variable} ${unbounded.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col relative">
         {/* Navigation */}
         <Navbar />
-        <main className="flex flex-col flex-1">{children}</main>
+        <ToastProvider />
+        <main className="flex flex-col flex-1">
+          <Providers>{children}</Providers>
+        </main>
         {/* Footer */}
         <Footer />
       </body>
