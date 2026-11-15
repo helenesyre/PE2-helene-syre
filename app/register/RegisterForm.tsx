@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleAlert, EyeClosed, LogIn, UserRoundPlus } from "lucide-react";
+import { CircleAlert, EyeClosed, UserRoundPlus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterFormSchema } from "../_lib/schema";

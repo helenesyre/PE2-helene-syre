@@ -1,4 +1,3 @@
-import { EyeClosed, UserRoundPlus } from "lucide-react";
 import RegisterForm from "./RegisterForm";
 
 export default function Register() {
