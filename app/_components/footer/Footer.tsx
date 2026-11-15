@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "../ui/Logo";
 import { CircleArrowRight } from "lucide-react";
@@ -7,9 +9,11 @@ import {
   faInstagram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import { useAuth } from "@/app/_lib/stores";
 
 // Footer component for the application
 export default function Footer() {
+  const { isAuthenticated } = useAuth();
   return (
     <footer className="flex flex-col xl:flex-row items-start xl:items-stretch justify-between py-16 px-6 md:px-10 lg:px-16 gap-16 bg-cloud-white-50">
       <div className="flex flex-col items-start gap-8 xl:gap-32">
@@ -52,11 +56,26 @@ export default function Footer() {
                 Venues
               </Link>
             </li>
-            <li>
-              <Link href={"/profile"} className="hover:text-ocean-500">
-                Profile
-              </Link>
-            </li>
+            {isAuthenticated() ? (
+              <li>
+                <Link href={"/profile"} className="hover:text-ocean-500">
+                  Profile
+                </Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link href={"/login"} className="hover:text-ocean-500">
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"/register"} className="hover:text-ocean-500">
+                    Register
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
           {/* Policy and terms */}
           <ul className="flex md:flex-col gap-6 md:gap-2 small-text">
