@@ -105,3 +105,59 @@
 - Also fixed a env variable bug that was found, where the env variable was not publicly accessible.
 
 **After using AI:** I verfied the fix worked and sent the code.
+
+---
+
+## Property 'data' does not exist on type 'LoginResponseData'
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 15 November 2026
+
+**Purpose:** I got the TypeScript error `Property 'data' does not exist on type 'LoginResponseData'` in `ProfileCard.tsx` when showing the user's name with `data?.data.name`, and wanted to find out why.
+
+**Outcome:**
+
+- Claude pointed out that `LoginForm.tsx` saved the whole API response (`{ data, meta }`) in the auth store, while the store is typed to only hold the user data (`LoginResponseData`). It still worked in the browser because `res.json()` returns `any`, so TypeScript never checked it.
+- Changed `setData(data)` to `setData(response.data)` in `LoginForm.tsx`, and typed `postLogin` to return `Promise<LoginResponse>`.
+- Changed `data?.data.name` to `data?.name` in `ProfileCard.tsx`.
+- It also found that a wrong email or password (400/404) returned `null`, which still ran `onSuccess` and showed "Successfully logged inn". It now throws an "Invalid email or password" error, so the error toast is shown instead.
+- It explained that I need to log out and in again, because the old nested data is still saved in `localStorage`.
+- It noted that `RegisterForm.tsx` also passes the raw API response to `setData`, so it may have the same problem.
+
+**After using AI:** I verified that the auth store saved the correct user data structure, without the extra `data` nesting.
+
+---
+
+## Allowing all https image URLs in next.config
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 15 November 2026
+
+**Purpose:** Images from the API only worked if i manually added the domains to the `images.domains` array in `next.config.ts`. I wanted to know if there was a way to make any https image URL work with `next/image`.
+
+**Outcome:**
+
+- Claude replaced the deprecated `domains` option with `remotePatterns`, using a wildcard that accepts any https host:
+
+From:
+
+```ts
+images: {
+  domains: ["cdn.dribbble.com", "images.unsplash.com"],
+},
+```
+
+To:
+
+```ts
+images: {
+  remotePatterns: [{ protocol: "https", hostname: "**" }],
+},
+```
+
+- It explained that the dev server has to be restarted after changing `next.config.ts`.
+- It pointed out that allowing every host lets any saved image URL be fetched through my server, and that plain `http` URLs still won't work unless I add a pattern for them. Another option is to use `unoptimized` on `<Image>` tags that show user-supplied URLs.
+
+**After using AI:** I restarted the dev server and checked that images loads correctly.

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormSchema } from "../_lib/schema";
 import { useMutation } from "@tanstack/react-query";
-import { LoginRequest } from "../_lib/types";
+import { LoginRequest, LoginResponse } from "../_lib/types";
 import z from "zod";
 import { ToastType, useAuth, useToast } from "../_lib/stores";
 import { useRouter } from "next/navigation";
@@ -24,8 +24,9 @@ export default function LoginForm() {
     mode: "onBlur",
   });
 
-  function postLogin(data: LoginRequest) {
-    const apiUrl = process.env.NEXT_PUBLIC_BASE_API_URL + "auth/login";
+  function postLogin(data: LoginRequest): Promise<LoginResponse> {
+    const apiUrl =
+      process.env.NEXT_PUBLIC_BASE_API_URL + "auth/login?_holidaze=true";
     return fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -34,7 +35,9 @@ export default function LoginForm() {
       body: JSON.stringify(data),
     })
       .then((res) => {
-        if (res.status === 400 || res.status === 404) return null;
+        if (res.status === 400 || res.status === 401 || res.status === 404) {
+          throw new Error("Invalid email or password");
+        }
         if (!res.ok) {
           throw new Error(`Failed to authenticate`);
         }
@@ -47,8 +50,8 @@ export default function LoginForm() {
 
   const mutation = useMutation({
     mutationFn: postLogin,
-    onSuccess: (data) => {
-      setData(data);
+    onSuccess: (response) => {
+      setData(response.data);
       addMessage({
         message: "Successfully logged inn",
         duration: 10000,

@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react";
+
 export type LoginRequest = {
   email: string;
   password: string;
@@ -28,3 +30,24 @@ export type LoginResponse = {
   data: LoginResponseData;
   meta: object;
 };
+
+export type ProfileCountData = {
+  venues: number;
+  bookings: number;
+};
+
+export type ProfileResponseData = {
+  name: string;
+  email: string;
+  bio: string;
+  avatar: ProfileImageData;
+  banner: ProfileImageData;
+  venueManager: boolean;
+  _count: ProfileCountData;
+};
+
+export type ProfileResponse = {
+  data: ProfileResponseData;
+  meta: object;
+};
+
