@@ -19,6 +19,8 @@ export default function Footer() {
           <form className="inline-flex items-center gap-4 border-b border-deep-forest-500 pb-3">
             <input
               type="email"
+              id="email"
+              autoComplete="email"
               placeholder="your@email.com"
               aria-label="Email address"
               className="bg-transparent outline-none"
