@@ -51,3 +51,15 @@ export type ProfileResponse = {
   meta: object;
 };
 
+export type NavLink = {
+  label: string;
+  href: string;
+  icon?: LucideIcon;
+  disabled?: boolean;
+};
+
+export type NavGroup = {
+  title: string;
+  links: NavLink[];
+  disabled?: boolean;
+};
