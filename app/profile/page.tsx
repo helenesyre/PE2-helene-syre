@@ -3,7 +3,7 @@ import ProfileCard from "../_components/ui/ProfileCard";
 
 export default function Profile() {
   return (
-    <div className="mt-12 mb-24 px-6 md:px-10 lg:px-16">
+    <section className="mt-12 mb-24 px-6 md:px-10 lg:px-16">
       <h1 className="sr-only">Profile</h1>
       <ProfileCard />
       {/* Upcoming stays section */}
@@ -14,6 +14,6 @@ export default function Profile() {
         </div>
         <UpcomingStays />
       </section>
-    </div>
+    </section>
   );
 }

@@ -3,7 +3,7 @@ import VenuesGrid from "../_components/grids/VenuesGrid";
 
 export default function Venues() {
   return (
-    <div className="mt-12 mb-24 px-6 md:px-10 lg:px-16">
+    <section className="mt-12 mb-24 px-6 md:px-10 lg:px-16">
       <h1>Venues</h1>
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-8 mt-8">
         {/* Search */}
@@ -60,6 +60,6 @@ export default function Venues() {
           Load more venues
         </button>
       </div>
-    </div>
+    </section>
   );
 }

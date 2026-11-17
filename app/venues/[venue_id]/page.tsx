@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export default function VenueDetails() {
   return (
-    <div className="mt-6 md:mt-10 xl:mt-12 mb-24 px-6 md:px-10 lg:px-16 xl:px-40">
+    <section className="mt-6 md:mt-10 xl:mt-12 mb-24 px-6 md:px-10 lg:px-16 xl:px-40">
       {/* Image Gallery */}
       <section className="grid gap-6 lg:grid-cols-2">
         <div className="relative w-full h-96 rounded-2xl overflow-hidden">
@@ -154,6 +154,6 @@ export default function VenueDetails() {
           Last changed: 2.11.2026 at 13:43 ・ Created: 1.11.2026 at 10:58
         </p>
       </section>
-    </div>
+    </section>
   );
 }

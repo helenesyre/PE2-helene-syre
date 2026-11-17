@@ -2,7 +2,7 @@ import LoginForm from "./LoginForm";
 
 export default function Login() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-100px)] bg-gray-100 px-6 md:px-10 lg:px-16">
+    <section className="flex flex-col items-center justify-center min-h-[calc(100vh-100px)] bg-gray-100 px-6 md:px-10 lg:px-16">
       <div className="flex flex-col gap-4 items-center mb-12">
         <h1 className="text-2xl md:text-3xl">Hi, welcome back!</h1>
         <p className="text-lg text-deep-forest-400">
@@ -19,6 +19,6 @@ export default function Login() {
           Sign up
         </a>
       </p>
-    </div>
+    </section>
   );
 }

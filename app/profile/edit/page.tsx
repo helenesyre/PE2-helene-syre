@@ -4,7 +4,7 @@ import EditProfileForm from "./EditProfileForm";
 
 export default function EditProfile() {
   return (
-    <div className="mt-12 mb-24 px-6 md:px-10 lg:px-16 xl:px-40">
+    <section className="mt-12 mb-24 px-6 md:px-10 lg:px-16 xl:px-40">
       <div className="flex flex-col gap-2 mb-18">
         <Breadcrumb />
         <h1>Edit profile</h1>
@@ -63,6 +63,6 @@ export default function EditProfile() {
           </figure>
         </aside>
       </div>
-    </div>
+    </section>
   );
 }
