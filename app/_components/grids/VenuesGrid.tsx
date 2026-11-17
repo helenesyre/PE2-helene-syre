@@ -1,4 +1,4 @@
-import VenueCard from "../venues/VenueCard";
+import VenueCard from "../cards/VenueCard";
 
 export default function VenuesGrid() {
   return (

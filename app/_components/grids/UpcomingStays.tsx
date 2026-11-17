@@ -1,4 +1,4 @@
-import BookingCard from "../venues/BookingCard";
+import BookingCard from "../cards/BookingCard";
 
 export default function UpcomingStays() {
   return (
