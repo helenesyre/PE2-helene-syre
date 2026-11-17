@@ -83,7 +83,7 @@ export default function ProfileCard() {
         <div className="flex flex-col md:flex-row gap-2 h-fit">
           {profileData?.data?.venueManager === true && (
             <Link
-              href="/venues"
+              href="/bookings"
               className="flex justify-center items-center gap-2 bg-ocean-500 text-cloud-white-500 button-text py-2 px-4 rounded-full cursor-pointer hover:bg-ocean-700 transition-colors duration-300"
             >
               <LayoutDashboard size={20} strokeWidth={1.5} />
