@@ -115,7 +115,7 @@ export default function Home() {
             href="/venues"
             className="flex items-center gap-2 bg-deep-forest-500 text-cloud-white-500 button-text py-2 px-4 rounded-full cursor-pointer hover:bg-deep-forest-400 transition-colors duration-300"
           >
-            Load more venues
+            View all venues
             <ArrowUpRight size={24} strokeWidth={2} />
           </Link>
         </div>
