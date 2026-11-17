@@ -229,7 +229,8 @@
     @apply text-lg font-semibold font-heading text-ocean-500;
   }
 
-  .single-venue-price-text {
+  .single-venue-price-text,
+  .manage-venue-number {
     @apply text-xl md:text-2xl font-semibold font-heading text-ocean-500;
   }
 
