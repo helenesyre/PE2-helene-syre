@@ -6,7 +6,7 @@ import PopularPlacesGrid from "./_components/grids/PopularPlacesGrid";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 z-0 relative">
+    <section className="flex flex-col flex-1 z-0 relative">
       {/* Hero image */}
       <section className="relative h-205 p-6 md:p-12">
         {/* Hero image */}
@@ -61,7 +61,7 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             {/* Step 1 */}
             <div className="flex gap-6 p-6 md:p-8 bg-cloud-white-50 rounded-2xl">
-              <div className="w-fit h-fit p-3 bg-ocean-100 text-ocean-500 rounded-xl">
+              <div className="w-fit h-fit p-3 bg-seafoam-100 text-ocean-500 rounded-xl">
                 <Search size={32} strokeWidth={1.5} />
               </div>
               <div className="flex flex-col gap-1">
@@ -120,6 +120,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-    </div>
+    </section>
   );
 }
