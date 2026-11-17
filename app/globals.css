@@ -206,7 +206,7 @@
   }
 
   .link-text {
-    @apply font-medium underline underline-offset-4;
+    @apply text-fern-700 font-medium underline decoration-[10%] underline-offset-[30%] hover:text-ocean-500;
   }
 
   .label-text {
@@ -227,6 +227,10 @@
 
   .price-text {
     @apply text-lg font-semibold font-heading text-ocean-500;
+  }
+
+  .single-venue-price-text {
+    @apply text-xl md:text-2xl font-semibold font-heading text-ocean-500;
   }
 
   /* Form font sizes */
