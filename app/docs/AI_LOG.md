@@ -161,3 +161,32 @@ images: {
 - It pointed out that allowing every host lets any saved image URL be fetched through my server, and that plain `http` URLs still won't work unless I add a pattern for them. Another option is to use `unoptimized` on `<Image>` tags that show user-supplied URLs.
 
 **After using AI:** I restarted the dev server and checked that images loads correctly.
+
+---
+
+## VenuePolicies link underline styling
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 17 November 2026
+
+**Purpose:** I copied in my styles from Figma to ensure the VenuePolicies link had the correct underline styling as the sketch.
+
+**Outcome:** It gave me the styling I needed for the VenuePolicies link, matching the Figma design.
+
+**After using AI:** Some of the styles were unnecessary and I removed them and it still looked correct according to the Figma design.
+
+---
+
+## Styling checkboxes
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 18 November 2026
+
+**Purpose:** I wanted to ensure that the checkboxes in my form had the correct styling according to the design. But was unsure how to implement it how i wanted it.
+
+**Outcome:** It provided guidance on how to style checkboxes according to the design, including the necessary CSS classes and structure. It also gave me recommendations on how to implement a mapped out structure for rendering multiple checkboxes dynamically.
+
+**After using AI:** I added the styling but changed it to match the design since it only gave me a generic styling. I didn't add the mapped out structure for rendering multiple checkboxes dynamically as suggested, because I was only setting up the HTML and not the logic yet.
+
