@@ -97,6 +97,14 @@ export type VenueLocation = {
   lng: number;
 };
 
+export type VenueOwner = {
+  name: string;
+  email: string;
+  bio: string;
+  avatar: ImageData;
+  banner: ImageData;
+};
+
 export type VenueResponseData = {
   id: string;
   name: string;
@@ -109,6 +117,7 @@ export type VenueResponseData = {
   updated: string;
   meta: VenueMeta;
   location: VenueLocation;
+  owner: VenueOwner;
 };
 
 // All venues response type

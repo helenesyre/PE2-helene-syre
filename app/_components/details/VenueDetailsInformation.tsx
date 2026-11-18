@@ -21,15 +21,18 @@ export function VenueDetailsInformation({
         <div className="flex flex-col lg:flex-row justify-between">
           <div className="flex items-center gap-4">
             <span className="lead-text text-ocean-700">
-              8 guests・Lake Como, Italy
+              {venueData.maxGuests} guests・{venueData.location.city},{" "}
+              {venueData.location.country}
             </span>
             <span className="flex items-center gap-1 py-1 px-3 small-text font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
               <Sparkles size={16} strokeWidth={1.5} />
-              5.0
+              {venueData.rating ?? 0.0}
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <p className="single-venue-price-text">NOK 2450</p>
+            <p className="single-venue-price-text">
+              NOK {venueData.price ?? 0}
+            </p>
             <p className="small-text text-stone-700">/ night</p>
           </div>
         </div>
@@ -37,18 +40,20 @@ export function VenueDetailsInformation({
       {/* Venue Manager information */}
       <section>
         <div className="flex items-center gap-4">
-          <div className="relative aspect-square w-14 h-14 rounded-full overflow-hidden">
+          <div className="relative aspect-square w-14 h-14 rounded-full overflow-hidden shrink-0">
             <Image
-              src="/images/users/avatar.jpg"
-              alt="..."
+              src={venueData.owner.avatar.url ?? "/images/users/avatar.jpg"}
+              alt={venueData.owner.avatar.alt ?? "User avatar"}
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover"
             />
           </div>
           <div className="flex flex-col gap-0">
-            <p className="text-lg font-semibold">Manager</p>
-            <p>manager@stud.noroff.no</p>
+            <p className="text-lg font-semibold">
+              {venueData.owner.name ?? "No name"}
+            </p>
+            <p>{venueData.owner.email ?? "No email"}</p>
           </div>
         </div>
       </section>
@@ -56,34 +61,49 @@ export function VenueDetailsInformation({
       {/* Description */}
       <section className="flex flex-col gap-4">
         <h2>Description:</h2>
-        <p>
-          This is a beautiful venue located in Lake Como, Italy. It offers a
-          comfortable stay for up to 8 guests with stunning views and modern
-          amenities.
-        </p>
+        <p>{venueData.description ?? "No description available"}</p>
       </section>
       {/* What the place offers */}
       <section className="flex flex-col gap-4">
         <h2>What the place offers:</h2>
         <ul className="list-none flex flex-col gap-3">
-          <li className="flex items-center gap-2">
-            <Wifi size={20} strokeWidth={1.5} /> Wi-Fi
-          </li>
-          <li className="flex items-center gap-2">
-            <EggFried size={20} strokeWidth={1.5} /> Breakfast
-          </li>
-          <li className="flex items-center gap-2">
-            <PawPrint size={20} strokeWidth={1.5} /> Pets
-          </li>
-          <li className="flex items-center gap-2">
-            <SquareLetterP size={20} strokeWidth={1.5} /> Parking
-          </li>
+          {venueData.meta.wifi && (
+            <li className="flex items-center gap-2">
+              <Wifi size={20} strokeWidth={1.5} /> Wi-Fi
+            </li>
+          )}
+          {venueData.meta.breakfast && (
+            <li className="flex items-center gap-2">
+              <EggFried size={20} strokeWidth={1.5} /> Breakfast
+            </li>
+          )}
+          {venueData.meta.pets && (
+            <li className="flex items-center gap-2">
+              <PawPrint size={20} strokeWidth={1.5} /> Pets
+            </li>
+          )}
+          {venueData.meta.parking && (
+            <li className="flex items-center gap-2">
+              <SquareLetterP size={20} strokeWidth={1.5} /> Parking
+            </li>
+          )}
+          {!(
+            venueData.meta.breakfast ||
+            venueData.meta.parking ||
+            venueData.meta.pets ||
+            venueData.meta.wifi
+          ) && <p>No amenities</p>}
         </ul>
       </section>
       {/* Location */}
       <section className="flex flex-col gap-4">
         <h2>Location:</h2>
-        <p>22016 Tremezzina, Province of Como, Italia</p>
+        <p>
+          {venueData.location.address ?? "No address"},{" "}
+          {venueData.location.city ?? "No city"},{" "}
+          {venueData.location.zip ?? "No zip"},{" "}
+          {venueData.location.country ?? "No country"}
+        </p>
       </section>
     </article>
   );

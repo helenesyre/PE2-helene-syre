@@ -67,7 +67,10 @@ export function getVenues({
 // Fetch a single venue by ID from the API
 export function getVenueById(venueId: string): Promise<SingleVenueResponse> {
   const apiUrl =
-    process.env.NEXT_PUBLIC_BASE_API_URL + "holidaze/venues/" + venueId;
+    process.env.NEXT_PUBLIC_BASE_API_URL +
+    "holidaze/venues/" +
+    venueId +
+    "?_owner=true";
   return fetch(apiUrl, {
     method: "GET",
     headers: {
