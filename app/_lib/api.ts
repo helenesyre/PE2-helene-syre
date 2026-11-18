@@ -64,3 +64,27 @@ export function getVenues({
     });
 }
 
+// Fetch a single venue by ID from the API
+export function getVenueById(venueId: string): Promise<SingleVenueResponse> {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_BASE_API_URL + "holidaze/venues/" + venueId;
+  return fetch(apiUrl, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+    },
+  })
+    .then((res) => {
+      if (res.status === 400 || res.status === 401 || res.status === 404) {
+        throw new Error("Venue not found");
+      }
+      if (!res.ok) {
+        throw new Error(`Failed to fetch venue`);
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
