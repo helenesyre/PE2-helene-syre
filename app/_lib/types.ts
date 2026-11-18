@@ -56,6 +56,7 @@ export type NavLink = {
   href: string;
   icon?: LucideIcon;
   disabled?: boolean;
+  onClick?: () => void;
 };
 
 export type NavGroup = {

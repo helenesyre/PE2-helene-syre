@@ -18,11 +18,14 @@ import { useEffect, useRef, useState } from "react";
 import Logo from "../ui/Logo";
 import type { NavLink, NavGroup } from "../../_lib/types";
 import { useAuth } from "@/app/_lib/stores";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 // Navbar component
 export default function Navbar() {
-  const { data, isAuthenticated, isVenueManager } = useAuth();
+  const { data, isAuthenticated, isVenueManager, logout } = useAuth();
+  const router = useRouter();
+
   // Navigation links for the navbar
   const navLinks: NavLink[] = [
     { label: "Home", href: "/" },
@@ -75,8 +78,13 @@ export default function Navbar() {
         },
         {
           label: "Log out",
-          href: "/login",
+          href: "#",
           icon: LogOut,
+          onClick: () => {
+            logout();
+            toggleMenu();
+            router.push("/login");
+          },
           disabled: !isAuthenticated(),
         },
       ],
@@ -178,6 +186,18 @@ export default function Navbar() {
                         .filter((link) => !link.disabled)
                         .map((link, linkKey) => {
                           const Icon = link.icon;
+                          if (link.onClick) {
+                            return (
+                              <button
+                                key={linkKey}
+                                onClick={link.onClick}
+                                className={`flex flex-row items-center gap-2 py-1.5 px-3 text-sm cursor-pointer hover:bg-seafoam-100 hover:font-medium transition-all duration-300 rounded-md`}
+                              >
+                                {Icon && <Icon size={20} strokeWidth={1.5} />}
+                                {link.label}
+                              </button>
+                            );
+                          }
                           return (
                             <Link
                               key={linkKey}
