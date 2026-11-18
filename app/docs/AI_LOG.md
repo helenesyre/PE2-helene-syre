@@ -190,3 +190,22 @@ images: {
 
 **After using AI:** I added the styling but changed it to match the design since it only gave me a generic styling. I didn't add the mapped out structure for rendering multiple checkboxes dynamically as suggested, because I was only setting up the HTML and not the logic yet.
 
+---
+
+## Login 404 on deployed site (missing environment variables)
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 18 November 2026
+
+**Purpose:** Login worked on localhost, but on the deployed Vercel site it failed with `POST https://pe2-helene-syre.vercel.app/undefinedauth/login?_holidaze=true 404 (Not Found)`. I wanted to find out why since it worked perfectly on localhost.
+
+**Outcome:**
+
+- It found that the code was fine. My `.gitignore` ignores `.env*`, so the `.env` file never reaches GitHub and Vercel builds without it. That made `process.env.NEXT_PUBLIC_BASE_API_URL` `undefined`, and it got added to the start of the URL.
+- It explained that I need to add `NEXT_PUBLIC_BASE_API_URL` (with the trailing `/`) and `NEXT_PUBLIC_API_KEY` under Settings → Environment Variables in Vercel, for Production, Preview and Development.
+- It explained that I have to redeploy afterwards, because Next.js writes `NEXT_PUBLIC_*` values into the code when it builds.
+- It recommended the "Config" type over "Secret", since `NEXT_PUBLIC_` values end up in the browser code and anyone can see them anyway.
+- It pointed out that the same variable is used in `LoginForm.tsx`, `RegisterForm.tsx` and `_lib/api.ts`, so the fix covers login, register and profile fetching.
+
+**After using AI:** I added the environment variables in Vercel by pasting in my `.env` contents, then redeployed the site.
