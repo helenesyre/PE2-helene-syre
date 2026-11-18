@@ -1,15 +1,25 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { VenueResponseData } from "@/app/_lib/types";
 
 // Product card component
-export default function VenueCard() {
+export default function VenueCard({
+  venueData,
+}: {
+  venueData: VenueResponseData;
+}) {
   return (
     <div className="p-3 bg-cloud-white-50 rounded-lg flex flex-col gap-4">
       {/* Image */}
-      <Link href="/venues/1" className="relative w-full h-64 md:h-50">
+      <Link
+        href={`/venues/${venueData?.id}`}
+        className="relative w-full h-64 md:h-50"
+      >
         <Image
-          src="/images/placeholder.png"
-          alt="Venue"
+          src={venueData.media?.[0]?.url || "/images/placeholder.png"}
+          alt={venueData.media?.[0]?.alt || "Venue"}
           fill
           loading="eager"
           sizes="33vw, 100vw"
@@ -20,10 +30,10 @@ export default function VenueCard() {
       <div>
         <div className="mb-4">
           <span className="label-text-lowercase text-ocean-700">
-            City・Country
+            {venueData.location?.city}・{venueData.location?.country}
           </span>
-          <h3>Venue Name</h3>
-          <p>Up to - guests</p>
+          <h3 className="line-clamp-2">{venueData.name}</h3>
+          <p>Up to {venueData.maxGuests} guests</p>
         </div>
         <div className="flex gap-2">
           <span className="tag-text px-2 py-1 border border-deep-forest-500 rounded-lg">
@@ -37,11 +47,11 @@ export default function VenueCard() {
       {/* Price and view button */}
       <div className="flex items-center justify-between pt-3 border-t border-cloud-white-600">
         <div className="flex items-center gap-2">
-          <p className="price-text">NOK 2450</p>
+          <p className="price-text">NOK {venueData.price}</p>
           <p className="small-text text-stone-700">/ night</p>
         </div>
         <Link
-          href={"/venues/1"}
+          href={`/venues/${venueData.id}`}
           className="button-text px-4 py-1.5 rounded-full cursor-pointer bg-ocean-500 text-cloud-white-500 hover:bg-ocean-700 hover:shadow-md transition-all duration-300"
         >
           View
