@@ -1,5 +1,5 @@
 import UpcomingStays from "../_components/grids/UpcomingStays";
-import ProfileCard from "../_components/ui/ProfileCard";
+import ProfileCard from "../_components/cards/ProfileCard";
 
 export default function Profile() {
   return (
