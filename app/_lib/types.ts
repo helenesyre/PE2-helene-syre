@@ -6,6 +6,16 @@ export type ImageData = {
   alt: string;
 };
 
+export type PaginationMeta = {
+  isFirstPage: boolean;
+  isLastPage: boolean;
+  currentPage: number;
+  previousPage: number | null;
+  nextPage: number | null;
+  pageCount: number;
+  totalCount: number;
+};
+
 // Login and registration types
 export type LoginRequest = {
   email: string;
