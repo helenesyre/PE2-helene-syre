@@ -2,6 +2,8 @@ import { Search } from "lucide-react";
 import VenuesGrid from "../_components/grids/VenuesGrid";
 
 export default function Venues() {
+  const venuesCount = 1000;
+
   return (
     <section className="mt-12 mb-24 px-6 md:px-10 lg:px-16">
       <h1>Venues</h1>
@@ -10,14 +12,13 @@ export default function Venues() {
         <div className="w-full md:max-w-2xl flex flex-col gap-2">
           <form className="flex items-center justify-between py-4 px-6 bg-cloud-white-50 border border-cloud-white-600 rounded-4xl shadow-[inset_0_4px_4px_0_rgba(0,0,0,0.25)]">
             <div>
-              <label htmlFor="email" className="sr-only">
-                Email
+              <label htmlFor="search" className="sr-only">
+                Search for venues
               </label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                autoComplete="email"
+                type="text"
+                id="search"
+                name="search"
                 placeholder="Search for venues..."
               />
             </div>
@@ -31,7 +32,7 @@ export default function Venues() {
 
           {/* Results count mobile */}
           <p className="md:hidden">
-            <span className="font-semibold">1000</span> venues found
+            <span className="font-semibold">{venuesCount}</span> venues found
           </p>
         </div>
 
@@ -48,7 +49,7 @@ export default function Venues() {
 
       {/* Results count desktop */}
       <p className="hidden md:block mb-0 md:mb-12 mt-0 md:mt-8">
-        <span className="font-semibold">1000</span> venues found
+        <span className="font-semibold">{venuesCount}</span> venues found
       </p>
 
       {/* Venues grid */}
