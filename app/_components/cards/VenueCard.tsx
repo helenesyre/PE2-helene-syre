@@ -3,6 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { VenueResponseData } from "@/app/_lib/types";
+import Tag from "../ui/Tags";
+import { Sparkles } from "lucide-react";
 
 // Product card component
 export default function VenueCard({
@@ -17,6 +19,14 @@ export default function VenueCard({
         href={`/venues/${venueData?.id}`}
         className="relative w-full h-64 md:h-50"
       >
+        <Tag
+          variant="medium"
+          color="primary"
+          className="absolute top-3 left-3 z-1"
+        >
+          <Sparkles size={16} strokeWidth={1.5} />
+          {(venueData.rating ?? 0).toFixed(1)}
+        </Tag>
         <Image
           src={venueData.media?.[0]?.url || "/images/placeholder.png"}
           alt={venueData.media?.[0]?.alt || "Venue"}
@@ -36,12 +46,12 @@ export default function VenueCard({
           <p>Up to {venueData.maxGuests} guests</p>
         </div>
         <div className="flex gap-2">
-          <span className="tag-text px-2 py-1 border border-deep-forest-500 rounded-lg">
+          <Tag variant="small" color="border">
             Tag 1
-          </span>
-          <span className="tag-text px-2 py-1 border border-deep-forest-500 rounded-lg">
+          </Tag>
+          <Tag variant="small" color="border">
             Tag 2
-          </span>
+          </Tag>
         </div>
       </div>
       {/* Price and view button */}

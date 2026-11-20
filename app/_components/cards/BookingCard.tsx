@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CalendarDays, Users } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import Tag from "../ui/Tags";
 
 // Product card component
 export default function BookingCard() {
@@ -11,6 +13,14 @@ export default function BookingCard() {
         href="/venues/1"
         className="relative w-full xl:w-64 2xl:w-80 h-64 md:h-50 xl:h-full shrink-0"
       >
+        <Tag
+          variant="medium"
+          color="primary"
+          className="absolute top-3 left-3 z-1"
+        >
+          <Sparkles size={16} strokeWidth={1.5} />
+          4.6
+        </Tag>
         <Image
           src="/images/placeholder.png"
           alt="Venue"

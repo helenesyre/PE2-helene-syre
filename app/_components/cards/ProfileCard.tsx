@@ -5,6 +5,7 @@ import { useAuth } from "@/app/_lib/stores";
 import { ProfileResponse } from "@/app/_lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { LayoutDashboard } from "lucide-react";
+import Tag from "../ui/Tags";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -64,13 +65,13 @@ export default function ProfileCard() {
           <div className="flex flex-col gap-4 max-w-xl">
             <div>
               {profileData?.data?.venueManager === true ? (
-                <span className="text-base font-semibold bg-lime-100 border border-lime-500 text-fern-600 px-4 py-1 rounded-lg">
+                <Tag variant="large" color="secondary">
                   Manager
-                </span>
+                </Tag>
               ) : (
-                <span className="text-base font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 px-4 py-1 rounded-lg">
-                  User
-                </span>
+                <Tag variant="large" color="primary">
+                  Customer
+                </Tag>
               )}
               <h2 className="mt-2 mb-1">{profileData?.data?.name}</h2>
               <p>{profileData?.data?.email}</p>

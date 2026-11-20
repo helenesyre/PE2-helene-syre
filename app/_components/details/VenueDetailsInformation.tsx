@@ -7,6 +7,7 @@ import {
   Wifi,
 } from "lucide-react";
 import Image from "next/image";
+import Tag from "../ui/Tags";
 
 export function VenueDetailsInformation({
   venueData,
@@ -24,10 +25,10 @@ export function VenueDetailsInformation({
               {venueData.maxGuests} guests・{venueData.location.city},{" "}
               {venueData.location.country}
             </span>
-            <span className="flex items-center gap-1 py-1 px-3 small-text font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
+            <Tag variant="medium" color="primary">
               <Sparkles size={16} strokeWidth={1.5} />
-              {venueData.rating ?? 0.0}
-            </span>
+              {(venueData.rating ?? 0).toFixed(1)}
+            </Tag>
           </div>
           <div className="flex items-center gap-2">
             <p className="single-venue-price-text">

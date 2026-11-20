@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Tag from "../_components/ui/Tags";
 
 export default function RecentBookings() {
   return (
@@ -24,9 +25,9 @@ export default function RecentBookings() {
             <div className="flex flex-col gap-0">
               <div className="flex items-center gap-2">
                 <p className="text-lg font-semibold">DumanPhoto</p>
-                <span className="flex items-center py-0.5 px-2 text-xs font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
+                <Tag variant="extraSmall" color="primary">
                   6-9 Oct 2026
-                </span>
+                </Tag>
               </div>
               <p>Villa Collina・2 guests</p>
             </div>
@@ -50,9 +51,9 @@ export default function RecentBookings() {
             <div className="flex flex-col gap-0">
               <div className="flex items-center gap-2">
                 <p className="text-lg font-semibold">JaneDoe</p>
-                <span className="flex items-center py-0.5 px-2 text-xs font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
+                <Tag variant="extraSmall" color="primary">
                   12-19 Aug 2026
-                </span>
+                </Tag>
               </div>
               <p>Countryside Villa・4 guests</p>
             </div>
@@ -76,9 +77,9 @@ export default function RecentBookings() {
             <div className="flex flex-col gap-0">
               <div className="flex items-center gap-2">
                 <p className="text-lg font-semibold">N3on</p>
-                <span className="flex items-center py-0.5 px-2 text-xs font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
+                <Tag variant="extraSmall" color="primary">
                   4-7 Jun 2026
-                </span>
+                </Tag>
               </div>
               <p>Villa Oliveto・2 guests</p>
             </div>
@@ -102,9 +103,9 @@ export default function RecentBookings() {
             <div className="flex flex-col gap-0">
               <div className="flex items-center gap-2">
                 <p className="text-lg font-semibold">Logan</p>
-                <span className="flex items-center py-0.5 px-2 text-xs font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
+                <Tag variant="extraSmall" color="primary">
                   2-5 Jun 2026
-                </span>
+                </Tag>
               </div>
               <p>Villa Oliveto・1 guests</p>
             </div>

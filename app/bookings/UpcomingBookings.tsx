@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Tag from "../_components/ui/Tags";
 
 export default function UpcomingBookings() {
   return (
@@ -24,9 +25,9 @@ export default function UpcomingBookings() {
             <div className="flex flex-col gap-0">
               <div className="flex items-center gap-2">
                 <p className="text-lg font-semibold">Henriette</p>
-                <span className="flex items-center py-0.5 px-2 text-xs font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
+                <Tag variant="extraSmall" color="primary">
                   13-15 Nov 2026
-                </span>
+                </Tag>
               </div>
               <p>Villa Oliveto・2 guests</p>
             </div>
@@ -50,9 +51,9 @@ export default function UpcomingBookings() {
             <div className="flex flex-col gap-0">
               <div className="flex items-center gap-2">
                 <p className="text-lg font-semibold">Preben</p>
-                <span className="flex items-center py-0.5 px-2 text-xs font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
+                <Tag variant="extraSmall" color="primary">
                   12-24 Dec 2026
-                </span>
+                </Tag>
               </div>
               <p>Countryside Villa・2 guests</p>
             </div>
@@ -76,9 +77,9 @@ export default function UpcomingBookings() {
             <div className="flex flex-col gap-0">
               <div className="flex items-center gap-2">
                 <p className="text-lg font-semibold">Tuva</p>
-                <span className="flex items-center py-0.5 px-2 text-xs font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
+                <Tag variant="extraSmall" color="primary">
                   4-5 Jan 2027
-                </span>
+                </Tag>
               </div>
               <p>Villa Oliveto・1 guests</p>
             </div>
@@ -102,9 +103,9 @@ export default function UpcomingBookings() {
             <div className="flex flex-col gap-0">
               <div className="flex items-center gap-2">
                 <p className="text-lg font-semibold">Travel_101</p>
-                <span className="flex items-center py-0.5 px-2 text-xs font-semibold bg-seafoam-50 border border-seafoam-200 text-ocean-500 rounded-lg">
+                <Tag variant="extraSmall" color="primary">
                   2-8 Feb 2027
-                </span>
+                </Tag>
               </div>
               <p>Villa Collina・5 guests</p>
             </div>
