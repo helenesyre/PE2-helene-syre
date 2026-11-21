@@ -9,6 +9,7 @@ import { LoginRequest, LoginResponse } from "../_lib/types";
 import z from "zod";
 import { ToastType, useAuth, useToast } from "../_lib/stores";
 import { useRouter } from "next/navigation";
+import Button from "../_components/ui/Button";
 
 export default function LoginForm() {
   const { setData } = useAuth();
@@ -133,13 +134,16 @@ export default function LoginForm() {
           </p>
         </div>
       </div>
-      <button
+      <Button
+        variant="large"
+        color="secondary"
+        width="full"
         type="submit"
-        className="w-full bg-deep-forest-500 text-cloud-white-500 button-text rounded-4xl px-4 py-2.5 my-6 cursor-pointer hover:bg-deep-forest-400 transition-all duration-300"
+        className="my-6"
       >
         Login
         <LogIn size={20} strokeWidth={2} className="ml-2 inline-block" />
-      </button>
+      </Button>
     </form>
   );
 }

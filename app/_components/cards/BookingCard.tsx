@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CalendarDays, Users } from "lucide-react";
 import { Sparkles } from "lucide-react";
 import Tag from "../ui/Tags";
+import Button from "../ui/Button";
 
 // Product card component
 export default function BookingCard() {
@@ -56,12 +57,9 @@ export default function BookingCard() {
             <p className="price-text">NOK 2450</p>
             <p className="small-text text-stone-700">/ night</p>
           </div>
-          <Link
-            href={"/venues/1"}
-            className="button-text px-4 py-1.5 rounded-full cursor-pointer bg-ocean-500 text-cloud-white-500 hover:bg-ocean-700 hover:shadow-md transition-all duration-300"
-          >
+          <Button variant="small" color="primary" href={"/venues/1"}>
             View
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { VenueResponseData } from "@/app/_lib/types";
 import Tag from "../ui/Tags";
 import { Sparkles } from "lucide-react";
+import Button from "../ui/Button";
 
 // Product card component
 export default function VenueCard({
@@ -60,12 +61,13 @@ export default function VenueCard({
           <p className="price-text">NOK {venueData.price}</p>
           <p className="small-text text-stone-700">/ night</p>
         </div>
-        <Link
+        <Button
+          variant="small"
+          color="primary"
           href={`/venues/${venueData.id}`}
-          className="button-text px-4 py-1.5 rounded-full cursor-pointer bg-ocean-500 text-cloud-white-500 hover:bg-ocean-700 hover:shadow-md transition-all duration-300"
         >
           View
-        </Link>
+        </Button>
       </div>
     </div>
   );

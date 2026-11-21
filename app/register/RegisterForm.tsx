@@ -7,11 +7,11 @@ import { RegisterFormSchema } from "../_lib/schema";
 import { useMutation } from "@tanstack/react-query";
 import { RegisterRequest } from "../_lib/types";
 import z from "zod";
-import { ToastType, useAuth, useToast } from "../_lib/stores";
+import { ToastType, useToast } from "../_lib/stores";
 import { useRouter } from "next/navigation";
+import Button from "../_components/ui/Button";
 
 export default function RegisterForm() {
-  const { setData } = useAuth();
   const { addMessage } = useToast();
   const router = useRouter();
 
@@ -52,8 +52,7 @@ export default function RegisterForm() {
 
   const mutation = useMutation({
     mutationFn: postRegister,
-    onSuccess: (data) => {
-      setData(data);
+    onSuccess: () => {
       addMessage({
         message: "Successfully registered account",
         duration: 10000,
@@ -198,7 +197,7 @@ export default function RegisterForm() {
           </p>
         </div>
       </div>
-      <div className="flex flex-row items-start gap-2 mb-4 p-4 bg-cloud-white-50 border border-cloud-white-600 rounded-lg">
+      <div className="flex flex-row items-start gap-2 mb-8 p-4 bg-cloud-white-50 border border-cloud-white-600 rounded-lg">
         <input
           type="checkbox"
           {...register("venueManager")}
@@ -215,9 +214,12 @@ export default function RegisterForm() {
           </p>
         </div>
       </div>
-      <button
+      <Button
+        variant="large"
+        color="secondary"
+        width="full"
         type="submit"
-        className="w-full bg-deep-forest-500 text-cloud-white-500 button-text rounded-4xl px-4 py-2.5 my-6 cursor-pointer hover:bg-deep-forest-400 transition-all duration-300"
+        className="my-6"
       >
         Create account
         <UserRoundPlus
@@ -225,7 +227,7 @@ export default function RegisterForm() {
           strokeWidth={2}
           className="ml-2 inline-block"
         />
-      </button>
+      </Button>
     </form>
   );
 }

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "@/app/_components/ui/Button";
 
 export default function EditProfileForm() {
   return (
@@ -122,18 +122,12 @@ export default function EditProfileForm() {
       </section>
       {/* Form actions */}
       <div className="flex justify-center gap-4">
-        <Link
-          href={"/profile"}
-          className="button-text py-2 px-4 rounded-full cursor-pointer bg-transparent text-deep-forest-500 hover:bg-stone-50 hover:shadow-md transition-all duration-300"
-        >
+        <Button variant="medium" color="ghost" href="/profile">
           Cancel
-        </Link>
-        <button
-          type="submit"
-          className="button-text py-2 px-4 rounded-full cursor-pointer bg-ocean-500 text-cloud-white-500 hover:bg-ocean-700 hover:shadow-md transition-all duration-300"
-        >
+        </Button>
+        <Button variant="medium" color="primary" type="submit">
           Save profile
-        </button>
+        </Button>
       </div>
     </form>
   );

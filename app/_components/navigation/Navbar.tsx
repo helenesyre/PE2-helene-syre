@@ -51,7 +51,7 @@ export default function Navbar() {
       title: "Hosting",
       links: [
         { label: "Dashboard", href: "/bookings", icon: LayoutDashboard },
-        { label: "Create venue", href: "/coming-soon", icon: CirclePlusIcon },
+        { label: "Create venue", href: "/venues/create", icon: CirclePlusIcon },
       ],
       disabled: !isVenueManager(),
     },
@@ -145,8 +145,8 @@ export default function Navbar() {
           {isAuthenticated() && (
             <Link href={"/profile"}>
               <Image
-                src={data?.avatar.url ?? ""}
-                alt={data?.avatar.alt ?? ""}
+                src={data?.avatar?.url ?? ""}
+                alt={data?.avatar?.alt ?? ""}
                 width={36}
                 height={36}
                 className="rounded-full object-cover aspect-square border border-deep-forest-500"

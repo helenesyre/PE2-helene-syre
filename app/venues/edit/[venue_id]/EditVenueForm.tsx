@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "@/app/_components/ui/Button";
 
 export default function EditVenueForm() {
   return (
@@ -78,9 +78,9 @@ export default function EditVenueForm() {
               className="bg-cloud-white-50 border border-cloud-white-600 rounded-4xl p-4 w-full shadow-[inset_0_4px_4px_0_rgba(0,0,0,0.25)]"
             />
           </div>
-          <button className="button-text px-4 py-1.5 my-3 w-fit h-fit rounded-full cursor-pointer bg-deep-forest-500 text-cloud-white-500 hover:bg-deep-forest-400 hover:shadow-md transition-all duration-300">
+          <Button variant="small" color="secondary" className="my-3">
             Add
-          </button>
+          </Button>
         </div>
         <p>Images added will appear here.</p>
       </section>
@@ -273,18 +273,12 @@ export default function EditVenueForm() {
       </section>
       {/* Form actions */}
       <div className="flex justify-center gap-4">
-        <Link
-          href={"/profile"}
-          className="button-text py-2 px-4 rounded-full cursor-pointer bg-transparent text-deep-forest-500 hover:bg-stone-50 hover:shadow-md transition-all duration-300"
-        >
+        <Button variant="medium" color="ghost" href="/bookings">
           Cancel
-        </Link>
-        <button
-          type="submit"
-          className="button-text py-2 px-4 rounded-full cursor-pointer bg-ocean-500 text-cloud-white-500 hover:bg-ocean-700 hover:shadow-md transition-all duration-300"
-        >
-          Create Venue
-        </button>
+        </Button>
+        <Button variant="medium" color="primary" type="submit">
+          Save changes
+        </Button>
       </div>
     </form>
   );

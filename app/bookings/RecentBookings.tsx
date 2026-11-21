@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Tag from "../_components/ui/Tags";
+import Button from "../_components/ui/Button";
 
 export default function RecentBookings() {
   return (
@@ -115,9 +116,14 @@ export default function RecentBookings() {
           </div>
         </li>
       </ul>
-      <button className="flex w-fit self-center items-center justify-center gap-2 bg-deep-forest-500 text-cloud-white-500 button-text py-2.5 px-4 rounded-full cursor-pointer hover:bg-deep-forest-400 transition-colors duration-300">
+      <Button
+        variant="large"
+        color="secondary"
+        width="fit"
+        className="self-center"
+      >
         View all
-      </button>
+      </Button>
     </div>
   );
 }

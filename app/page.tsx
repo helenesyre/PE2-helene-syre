@@ -1,8 +1,8 @@
 import { ArrowUpRight, Building, MapPinned, Search } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import DestinationGrid from "./_components/grids/DestinationGrid";
 import PopularPlacesGrid from "./_components/grids/PopularPlacesGrid";
+import Button from "./_components/ui/Button";
 
 export default function Home() {
   return (
@@ -111,13 +111,10 @@ export default function Home() {
         </div>
         <PopularPlacesGrid />
         <div className="flex justify-center mt-12 md:mt-24">
-          <Link
-            href="/venues"
-            className="flex items-center gap-2 bg-deep-forest-500 text-cloud-white-500 button-text py-2 px-4 rounded-full cursor-pointer hover:bg-deep-forest-400 transition-colors duration-300"
-          >
+          <Button variant="medium" color="secondary" href="/venues">
             View all venues
             <ArrowUpRight size={24} strokeWidth={2} />
-          </Link>
+          </Button>
         </div>
       </section>
     </section>

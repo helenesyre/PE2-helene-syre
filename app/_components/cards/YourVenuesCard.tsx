@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Tag from "../ui/Tags";
 import { Sparkles } from "lucide-react";
+import Button from "../ui/Button";
 
 // Product card component
 export default function YourVenuesCard() {
@@ -51,18 +52,17 @@ export default function YourVenuesCard() {
       </div>
       {/* Card action buttons */}
       <div className="flex gap-3 pt-3 border-t border-cloud-white-600">
-        <Link
-          href={"/venues/edit/1"}
-          className="flex justify-center button-text w-full px-4 py-1.5 rounded-full cursor-pointer border border-ocean-700 text-ocean-700 button-text hover:bg-ocean-50 duration-300hover:shadow-md transition-all duration-300"
+        <Button
+          variant="small"
+          color="borderPrimary"
+          width="full"
+          href={`/venues/edit/1`}
         >
           Edit
-        </Link>
-        <Link
-          href={"/venues/1"}
-          className="flex justify-center button-text w-full px-4 py-1.5 rounded-full cursor-pointer bg-ocean-500 text-cloud-white-500 hover:bg-ocean-700 hover:shadow-md transition-all duration-300"
-        >
+        </Button>
+        <Button variant="small" color="primary" width="full" href={`/venues/1`}>
           View
-        </Link>
+        </Button>
       </div>
     </div>
   );

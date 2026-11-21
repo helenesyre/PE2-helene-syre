@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { LayoutDashboard } from "lucide-react";
 import Tag from "../ui/Tags";
 import Image from "next/image";
-import Link from "next/link";
+import Button from "../ui/Button";
 
 export default function ProfileCard() {
   const { data, logout } = useAuth();
@@ -83,26 +83,22 @@ export default function ProfileCard() {
         </div>
         <div className="flex flex-col md:flex-row gap-2 h-fit">
           {profileData?.data?.venueManager === true && (
-            <Link
-              href="/bookings"
-              className="flex justify-center items-center gap-2 bg-ocean-500 text-cloud-white-500 button-text py-2 px-4 rounded-full cursor-pointer hover:bg-ocean-700 transition-colors duration-300"
-            >
+            <Button variant="large" color="primary" href="/bookings">
               <LayoutDashboard size={20} strokeWidth={1.5} />
               Manage venues
-            </Link>
+            </Button>
           )}
-          <Link
-            href="/profile/edit"
-            className="flex justify-center gap-2 border border-ocean-700 text-ocean-700 button-text py-2 px-4 rounded-full cursor-pointer hover:bg-ocean-50 transition-colors duration-300"
-          >
+          <Button variant="large" color="borderPrimary" href="/profile/edit">
             Edit profile
-          </Link>
-          <button
+          </Button>
+          <Button
+            variant={"medium"}
+            color={"borderPrimary"}
+            className="w-full md:w-auto"
             onClick={handleLogout}
-            className="flex justify-center gap-2 border border-ocean-700 text-ocean-700 button-text py-2 px-4 rounded-full cursor-pointer hover:bg-ocean-50 transition-colors duration-300"
           >
             Log out
-          </button>
+          </Button>
         </div>
       </div>
     </section>

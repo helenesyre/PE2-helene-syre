@@ -1,5 +1,6 @@
 import { Search } from "lucide-react";
 import VenuesGrid from "../_components/grids/VenuesGrid";
+import Button from "../_components/ui/Button";
 
 export default function Venues() {
   const venuesCount = 1000;
@@ -57,9 +58,9 @@ export default function Venues() {
 
       {/* Load more button */}
       <div className="flex justify-center mt-12 md:mt-24">
-        <button className="bg-deep-forest-500 text-cloud-white-500 button-text py-2 px-4 rounded-full cursor-pointer hover:bg-deep-forest-400 transition-colors duration-300">
+        <Button variant="medium" color="secondary">
           Load more venues
-        </button>
+        </Button>
       </div>
     </section>
   );

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import YourVenuesGrid from "../_components/grids/YourVenuesGrid";
 import UpcomingBookings from "./UpcomingBookings";
 import RecentBookings from "./RecentBookings";
@@ -8,6 +7,7 @@ import {
   CalendarClock,
   CalendarCheck,
 } from "lucide-react";
+import Button from "../_components/ui/Button";
 
 export default function Bookings() {
   return (
@@ -21,13 +21,15 @@ export default function Bookings() {
             Create new venues, update listings and see who&#39;s coming.
           </p>
         </div>
-        <Link
+        <Button
+          variant="large"
+          color="primary"
           href="/venues/create"
-          className="flex h-fit w-full md:w-fit items-center justify-center gap-2 bg-ocean-500 text-cloud-white-500 button-text py-2.5 px-4 rounded-full cursor-pointer hover:bg-ocean-700 transition-colors duration-300"
+          className="w-full md:w-fit"
         >
           <CirclePlus size={24} strokeWidth={2} />
           Create venue
-        </Link>
+        </Button>
       </div>
 
       {/* Active venues, Upcoming bookings, Next check-in */}
