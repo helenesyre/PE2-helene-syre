@@ -32,18 +32,36 @@ export function getProfile(
 // Fetch all venues from the API
 export function getVenues({
   sortOrder = "desc",
+  sortBy,
   limit,
+  page,
+  search,
 }: {
   sortOrder?: string;
+  sortBy?: string;
   limit?: number;
+  page?: number;
+  search?: string;
 }): Promise<VenuesResponse> {
-  const apiUrl =
-    process.env.NEXT_PUBLIC_BASE_API_URL +
-    "holidaze/venues?sortOrder=" +
-    sortOrder +
-    "&sort=created" +
-    (limit ? "&limit=" + limit : "");
-  return fetch(apiUrl, {
+  let reqUrl = new URL(
+    process.env.NEXT_PUBLIC_BASE_API_URL + "holidaze/venues",
+  );
+  if (search && search.trim() !== "") {
+    reqUrl = new URL(
+      process.env.NEXT_PUBLIC_BASE_API_URL + "holidaze/venues/search",
+    );
+    reqUrl.searchParams.set("q", search);
+  }
+  reqUrl.searchParams.set("sortOrder", sortOrder);
+  reqUrl.searchParams.set("sort", sortBy || "created");
+  if (page) {
+    reqUrl.searchParams.set("page", page.toString());
+  }
+  if (limit) {
+    reqUrl.searchParams.set("limit", limit.toString());
+  }
+
+  return fetch(reqUrl.toString(), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

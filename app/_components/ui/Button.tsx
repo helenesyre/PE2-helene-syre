@@ -51,6 +51,7 @@ export type ButtonProps = {
   children?: ReactNode;
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 // Button component
@@ -60,6 +61,7 @@ export default function Button(props: ButtonProps) {
     color = "primary",
     width = "auto",
     icon = false,
+    disabled = false,
     prefix,
     suffix,
     children,
@@ -94,14 +96,19 @@ export default function Button(props: ButtonProps) {
   // Render the button as an anchor tag if an href is provided
   if (href) {
     return (
-      <a href={href} className={buttonClasses}>
+      <a href={href} className={buttonClasses} aria-disabled={disabled}>
         {content}
       </a>
     );
   }
   // Render the button as a regular button if no href is provided
   return (
-    <button type={type} className={buttonClasses} onClick={onClick}>
+    <button
+      type={type}
+      className={buttonClasses}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {content}
     </button>
   );

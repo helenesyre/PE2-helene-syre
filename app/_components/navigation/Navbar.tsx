@@ -145,7 +145,7 @@ export default function Navbar() {
           {isAuthenticated() && (
             <Link href={"/profile"}>
               <Image
-                src={data?.avatar?.url ?? ""}
+                src={data?.avatar?.url ?? "/public/images/users/avatar.jpg"}
                 alt={data?.avatar?.alt ?? ""}
                 width={36}
                 height={36}

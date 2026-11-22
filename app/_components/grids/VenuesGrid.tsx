@@ -1,32 +1,18 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
 import VenueCard from "../cards/VenueCard";
-import { VenuesResponse } from "@/app/_lib/types";
-import { getVenues } from "@/app/_lib/api";
+import { VenueResponseData } from "@/app/_lib/types";
 
-export default function VenuesGrid() {
-  const {
-    isPending,
-    isError,
-    data: venuesData,
-    error,
-  } = useQuery<VenuesResponse>({
-    queryKey: ["venues"],
-    queryFn: () => getVenues({ limit: 12 }),
-  });
-
-  if (isPending) {
-    return <p>Loading...</p>;
-  }
-
-  if (isError) {
-    return <p>{error?.message || "An error occurred"}</p>;
-  }
+export default function VenuesGrid({ data }: { data: VenueResponseData[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {venuesData.data.map((venue, key) => (
+      {data.map((venue, key) => (
         <VenueCard key={key} venueData={venue} />
       ))}
+      {data.length === 0 && (
+        <p className="col-span-full text-center text-stone-500">
+          No venues found.
+        </p>
+      )}
     </div>
   );
 }

@@ -209,3 +209,25 @@ images: {
 - It pointed out that the same variable is used in `LoginForm.tsx`, `RegisterForm.tsx` and `_lib/api.ts`, so the fix covers login, register and profile fetching.
 
 **After using AI:** I added the environment variables in Vercel by pasting in my `.env` contents, then redeployed the site.
+
+---
+
+## Venues sort value lags one change behind
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 21 November 2026
+
+**Purpose:** On the venues page, the sort dropdown was always one change behind. If I switched from price → created → price, the list was sorted by created when I picked price. I wanted to find out why and fix it.
+
+**Outcome:**
+
+- It explained that this was a stale closure. `setSortBy` and `setOrder` don't update the state right away, only on the next render. But `queryClient.invalidateQueries` ran in the same handler and refetched straight away with the old `queryFn`, which still had the previous sort values.
+- It also pointed out that the query key was always just `["venues"]`, so React Query had no way of knowing the sort or search had changed.
+- It changed the query key to `["venues", { search, sortBy, order }]`. Now React Query refetches with the current values whenever they change, and the `invalidateQueries` calls (and `useQueryClient`) could be removed.
+- It split the search into `searchInput` (what's typed in the field) and `search` (what was submitted). Otherwise every keystroke would change the query key and trigger a new fetch.
+- It added `placeholderData: keepPreviousData`, so the old list stays on screen while the new sort or search loads instead of showing "Loading...".
+- It replaced the `venuesCount` state with a value read from `meta.totalCount` on the first page, and made `getNextPageParam` use `lastPage.meta.nextPage` instead of working out the page count by hand.
+- It moved `setSortValue` into `handleSortChange` so the select's `onChange` only calls one function.
+
+**After using AI:** I updated the venues page to use the new query key with `search`, `sortBy`, and `order`, split the search input into `searchInput` and `search`, added `placeholderData: keepPreviousData`, and removed the `invalidateQueries` calls. The sort dropdown now works correctly and the list updates immediately when the sort changes.
