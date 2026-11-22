@@ -64,6 +64,19 @@ export type ProfileResponse = {
   meta: object;
 };
 
+// Update profile types
+export type UpdateProfileRequest = {
+  bio?: string;
+  avatar?: ImageData;
+  banner?: ImageData;
+  venueManager?: boolean;
+};
+
+export type UpdateProfileResponse = {
+  data: ProfileResponseData;
+  meta: object;
+};
+
 // Navigation types
 export type NavLink = {
   label: string;
