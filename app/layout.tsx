@@ -7,6 +7,7 @@ import Navbar from "./_components/navigation/Navbar";
 import Footer from "./_components/footer/Footer";
 import { Providers } from "./providers";
 import ToastProvider from "./_components/toast/ToastProvider";
+import { Suspense } from "react";
 
 // Font Awesome CSS is imported above, so stop it injecting its own at runtime
 config.autoAddCss = false;
@@ -35,7 +36,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col relative">
         {/* Navigation */}
-        <Navbar />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Navbar />
+        </Suspense>
         <ToastProvider />
         <main className="flex flex-col flex-1">
           <Providers>{children}</Providers>
