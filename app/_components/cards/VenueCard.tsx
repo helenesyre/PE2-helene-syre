@@ -13,8 +13,13 @@ export default function VenueCard({
 }: {
   venueData: VenueResponseData;
 }) {
+  const venueMeta = venueData.meta || {};
+  const venueMetaTagsMap = Object.entries(venueMeta).filter(
+    ([key, value]) => value === true,
+  );
+
   return (
-    <div className="p-3 bg-cloud-white-50 rounded-lg flex flex-col gap-4">
+    <div className="h-full p-3 bg-cloud-white-50 rounded-lg flex flex-col gap-4">
       {/* Image */}
       <Link
         href={`/venues/${venueData?.id}`}
@@ -37,37 +42,44 @@ export default function VenueCard({
           className="object-cover rounded-lg"
         />
       </Link>
-      {/* Venue details */}
-      <div>
-        <div className="mb-4">
-          <span className="label-text-lowercase text-ocean-700">
-            {venueData.location?.city}・{venueData.location?.country}
-          </span>
-          <h3 className="line-clamp-2">{venueData.name}</h3>
-          <p>Up to {venueData.maxGuests} guests</p>
+      <div className="flex-1 flex flex-col gap-4 justify-between">
+        {/* Venue details */}
+        <div>
+          <div className="mb-4">
+            <span className="label-text-lowercase text-ocean-700">
+              {venueData.location?.city}・{venueData.location?.country}
+            </span>
+            <h3 className="line-clamp-2">{venueData.name}</h3>
+            <p>Up to {venueData.maxGuests} guests</p>
+          </div>
+          <div className="flex gap-2">
+            {venueMetaTagsMap.length > 0 ? (
+              venueMetaTagsMap.map(([key]) => (
+                <Tag key={key} variant="small" color="border">
+                  {key}
+                </Tag>
+              ))
+            ) : (
+              <Tag variant="small" color="border">
+                No amenities
+              </Tag>
+            )}
+          </div>
         </div>
-        <div className="flex gap-2">
-          <Tag variant="small" color="border">
-            Tag 1
-          </Tag>
-          <Tag variant="small" color="border">
-            Tag 2
-          </Tag>
+        {/* Price and view button */}
+        <div className="flex items-center justify-between pt-3 border-t border-cloud-white-600">
+          <div className="flex items-center gap-2">
+            <p className="price-text">NOK {venueData.price}</p>
+            <p className="small-text text-stone-700">/ night</p>
+          </div>
+          <Button
+            variant="small"
+            color="primary"
+            href={`/venues/${venueData.id}`}
+          >
+            View
+          </Button>
         </div>
-      </div>
-      {/* Price and view button */}
-      <div className="flex items-center justify-between pt-3 border-t border-cloud-white-600">
-        <div className="flex items-center gap-2">
-          <p className="price-text">NOK {venueData.price}</p>
-          <p className="small-text text-stone-700">/ night</p>
-        </div>
-        <Button
-          variant="small"
-          color="primary"
-          href={`/venues/${venueData.id}`}
-        >
-          View
-        </Button>
       </div>
     </div>
   );
