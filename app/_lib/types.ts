@@ -131,6 +131,7 @@ export type VenueResponseData = {
   meta: VenueMeta;
   location: VenueLocation;
   owner: VenueOwner;
+  bookings: BookingsResponseData[];
 };
 
 // All venues response type
@@ -143,4 +144,27 @@ export type VenuesResponse = {
 export type SingleVenueResponse = {
   data: VenueResponseData;
   meta: object;
+};
+
+export type CustomerResponseData = {
+  name: string;
+  email: string;
+  bio: string;
+  avatar: ImageData;
+  banner: ImageData;
+};
+
+export type BookingsResponseData = {
+  id: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  created: string;
+  updated: string;
+  customer: CustomerResponseData;
+};
+
+export type BookingsResponse = {
+  data: BookingsResponseData[];
+  meta: PaginationMeta;
 };

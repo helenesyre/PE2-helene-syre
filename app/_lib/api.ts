@@ -109,3 +109,34 @@ export function getVenueById(venueId: string): Promise<SingleVenueResponse> {
       throw error;
     });
 }
+
+export function getVenuesByProfile(
+  profileId: string,
+  accessToken: string,
+): Promise<VenuesResponse> {
+  const reqUrl = new URL(
+    process.env.NEXT_PUBLIC_BASE_API_URL +
+      `holidaze/profiles/${profileId}/venues`,
+  );
+  reqUrl.searchParams.set("_bookings", "true");
+  return fetch(reqUrl.toString(), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken || ""}`,
+      "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+    },
+  })
+    .then((res) => {
+      if (res.status === 400 || res.status === 401 || res.status === 404) {
+        throw new Error("Venues not found");
+      }
+      if (!res.ok) {
+        throw new Error(`Failed to fetch venues`);
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
