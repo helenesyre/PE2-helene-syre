@@ -18,13 +18,14 @@ import { useEffect, useRef, useState } from "react";
 import Logo from "../ui/Logo";
 import type { NavLink, NavGroup } from "../../_lib/types";
 import { useAuth } from "@/app/_lib/stores";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 
 // Navbar component
 export default function Navbar() {
   const { data, isAuthenticated, isVenueManager, logout } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
 
   // Navigation links for the navbar
   const navLinks: NavLink[] = [
@@ -122,15 +123,19 @@ export default function Navbar() {
 
   return (
     <header>
-      <nav className="flex items-center justify-between p-6 md:px-10 lg:px-16 bg-cloud-white-50 transition-all duration-300">
+      <nav
+        className={`flex items-center justify-between p-6 md:px-10 lg:px-16 transition-[padding] duration-300 ${pathname === "/" ? " bg-transparent text-cloud-white-500 absolute top-0 left-0 w-full z-90" : "bg-cloud-white-50"}`}
+      >
         <div className="flex items-center gap-6">
           <Link href={"/"}>
-            <Logo />
+            <Logo
+              className={`${pathname === "/" ? "text-cloud-white-500" : "text-ocean-500"}`}
+            />
           </Link>
           <div className="hidden md:flex items-center gap-6">
             <span
               aria-hidden="true"
-              className="h-10 w-0.5 rounded-full bg-cloud-white-600"
+              className={`h-10 w-0.5 rounded-full bg-cloud-white-600 ${pathname === "/" ? "opacity-60" : "opacity-100"}`}
             />
             {navLinks
               .filter((link) => !link.disabled)
@@ -149,7 +154,7 @@ export default function Navbar() {
                 alt={data?.avatar?.alt ?? ""}
                 width={36}
                 height={36}
-                className="rounded-full object-cover aspect-square border border-deep-forest-500"
+                className={`rounded-full object-cover aspect-square border ${pathname === "/" ? "border-cloud-white-500" : "border-deep-forest-500"}`}
               />
             </Link>
           )}
@@ -159,7 +164,7 @@ export default function Navbar() {
               onClick={toggleMenu}
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
-              className="p-2 rounded-full border border-deep-forest-500 cursor-pointer"
+              className={`p-2 rounded-full border cursor-pointer ${pathname === "/" ? "border-cloud-white-500" : "border-deep-forest-500"}`}
             >
               {isOpen ? (
                 <X size={18} strokeWidth={1.5} />
@@ -170,7 +175,7 @@ export default function Navbar() {
             {isOpen && (
               <div
                 ref={dropdownRef}
-                className="absolute right-0 mt-3 w-72 md:w-60 bg-cloud-white-50 border border-cloud-white-600 rounded-md shadow-md p-4 z-10 divide-y divide-seafoam-100"
+                className="absolute right-0 mt-3 w-72 md:w-60 bg-cloud-white-50 border border-cloud-white-600 text-deep-forest-500 rounded-md shadow-md p-4 z-10 divide-y divide-seafoam-100"
               >
                 {dropdownNavLinks
                   .filter((group) => !group.disabled)

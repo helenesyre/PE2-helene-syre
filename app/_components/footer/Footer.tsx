@@ -39,7 +39,9 @@ export default function Footer() {
           </form>
         </div>
         {/* Logo */}
-        <Logo />
+        <Link href={"/"}>
+          <Logo className="text-ocean-500" />
+        </Link>
       </div>
       {/* Footer navigation links */}
       <div className="flex flex-col md:flex-row items-start xl:items-stretch gap-12 md:gap-16 2xl:gap-20">
