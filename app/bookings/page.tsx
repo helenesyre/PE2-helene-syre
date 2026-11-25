@@ -38,7 +38,7 @@ export default function Bookings() {
             <h2>Your venues</h2>
           </div>
           <p className="md:max-w-md lg:max-w-sm xl:max-w-md text-left lg:text-right">
-            Every venue you’ve created in one place.
+            Every venue you&#39;ve created in one place.
           </p>
         </div>
         <YourVenuesGrid />

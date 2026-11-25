@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 type DestinationCard = {
   src: string;
@@ -51,8 +52,9 @@ export default function DestinationGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-6 [&:has(>:hover)>:not(:hover)]:opacity-60">
       {cards.map((card) => (
-        <div
+        <Link
           key={card.src}
+          href="/venues"
           className={`group relative cursor-pointer flex flex-col justify-end h-105 transition-opacity duration-300 ${card.span}`}
         >
           <Image
@@ -79,7 +81,7 @@ export default function DestinationGrid() {
               className="shrink-0 text-cloud-white-500 transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2"
             />
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
