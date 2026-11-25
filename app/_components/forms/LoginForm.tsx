@@ -3,13 +3,13 @@
 import { CircleAlert, EyeClosed, LogIn } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginFormSchema } from "../../_lib/schema";
+import { LoginFormSchema } from "@/app/_lib/schema";
 import { useMutation } from "@tanstack/react-query";
 import z from "zod";
-import { ToastType, useAuth, useToast } from "../../_lib/stores";
+import { ToastType, useAuth, useToast } from "@/app/_lib/stores";
 import { useRouter } from "next/navigation";
-import Button from "../ui/Button";
-import { postLogin } from "../../_lib/api";
+import Button from "@/app/_components/ui/Button";
+import { postLogin } from "@/app/_lib/api";
 
 export default function LoginForm() {
   const { setData } = useAuth();

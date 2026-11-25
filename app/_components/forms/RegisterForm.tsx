@@ -3,13 +3,13 @@
 import { CircleAlert, EyeClosed, UserRoundPlus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterFormSchema } from "../_lib/schema";
+import { RegisterFormSchema } from "@/app/_lib/schema";
 import { useMutation } from "@tanstack/react-query";
 import z from "zod";
-import { ToastType, useToast } from "../_lib/stores";
+import { ToastType, useToast } from "@/app/_lib/stores";
 import { useRouter } from "next/navigation";
-import Button from "../_components/ui/Button";
-import { postRegister } from "../_lib/api";
+import Button from "@/app/_components/ui/Button";
+import { postRegister } from "@/app/_lib/api";
 
 export default function RegisterForm() {
   const { addMessage } = useToast();
