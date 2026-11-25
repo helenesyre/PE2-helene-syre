@@ -20,13 +20,15 @@ export default function ManagerVenueStats() {
     return <p>Error loading data: {error?.message}</p>;
   }
 
+  const today = new Date();
+  const tomorrow = new Date(today.getTime() + 86400000);
+
   // Upcoming bookings count
   const upcomingBookings = data?.data.reduce((count, venue) => {
     return (
       count +
       (venue.bookings?.filter(
-        (booking) =>
-          new Date(booking.dateFrom).getDate() >= new Date().getDate(),
+        (booking) => new Date(booking.dateFrom) >= tomorrow,
       ).length || 0)
     );
   }, 0);
@@ -35,13 +37,10 @@ export default function ManagerVenueStats() {
   const upcomingBookingsArray: BookingsResponseData[] = [
     ...data?.data.flatMap((venue) => {
       return venue.bookings
-        ?.filter(
-          (booking) =>
-            new Date(booking.dateFrom).getDate() > new Date().getDate() + 1,
-        )
+        ?.filter((booking) => new Date(booking.dateFrom) >= tomorrow)
         .sort(function (a: BookingsResponseData, b: BookingsResponseData) {
           return (
-            new Date(b.dateFrom).getDate() - new Date(a.dateFrom).getDate()
+            new Date(a.dateFrom).getTime() - new Date(b.dateFrom).getTime()
           );
         });
     }),
