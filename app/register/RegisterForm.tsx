@@ -5,11 +5,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterFormSchema } from "../_lib/schema";
 import { useMutation } from "@tanstack/react-query";
-import { RegisterRequest } from "../_lib/types";
 import z from "zod";
 import { ToastType, useToast } from "../_lib/stores";
 import { useRouter } from "next/navigation";
 import Button from "../_components/ui/Button";
+import { postRegister } from "../_lib/api";
 
 export default function RegisterForm() {
   const { addMessage } = useToast();
@@ -23,32 +23,6 @@ export default function RegisterForm() {
     resolver: zodResolver(RegisterFormSchema),
     mode: "onBlur",
   });
-
-  function postRegister(data: RegisterRequest) {
-    const apiUrl = process.env.NEXT_PUBLIC_BASE_API_URL + "auth/register";
-    return fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data.username,
-        email: data.email,
-        password: data.password,
-        venueManager: data.venueManager,
-      }),
-    })
-      .then((res) => {
-        if (res.status === 400 || res.status === 404) return null;
-        if (!res.ok) {
-          throw new Error(`Failed to authenticate`);
-        }
-        return res.json();
-      })
-      .catch((error) => {
-        throw error;
-      });
-  }
 
   const mutation = useMutation({
     mutationFn: postRegister,

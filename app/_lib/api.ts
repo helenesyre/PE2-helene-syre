@@ -1,10 +1,12 @@
-import { ProfileResponse, VenuesResponse, SingleVenueResponse } from "./types";
 import {
   ProfileResponse,
   VenuesResponse,
   SingleVenueResponse,
+  LoginRequest,
+  LoginResponse,
   CreateVenueRequest,
   CreateVenueResponse,
+  RegisterRequest,
 } from "./types";
 
 // Fetch user profile from the API
@@ -141,6 +143,58 @@ export function getVenuesByProfile(
       }
       if (!res.ok) {
         throw new Error(`Failed to fetch venues`);
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
+// Login
+export function postLogin(data: LoginRequest): Promise<LoginResponse> {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_BASE_API_URL + "auth/login?_holidaze=true";
+  return fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => {
+      if (res.status === 400 || res.status === 401 || res.status === 404) {
+        throw new Error("Invalid email or password");
+      }
+      if (!res.ok) {
+        throw new Error(`Failed to authenticate`);
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
+// Register
+export function postRegister(data: RegisterRequest) {
+  const apiUrl = process.env.NEXT_PUBLIC_BASE_API_URL + "auth/register";
+  return fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: data.username,
+      email: data.email,
+      password: data.password,
+      venueManager: data.venueManager,
+    }),
+  })
+    .then((res) => {
+      if (res.status === 400 || res.status === 404) return null;
+      if (!res.ok) {
+        throw new Error(`Failed to authenticate`);
       }
       return res.json();
     })
