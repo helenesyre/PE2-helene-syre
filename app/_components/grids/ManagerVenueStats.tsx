@@ -26,7 +26,7 @@ export default function ManagerVenueStats() {
       count +
       (venue.bookings?.filter(
         (booking) =>
-          new Date(booking.dateFrom).getDate() > new Date().getDate() + 1,
+          new Date(booking.dateFrom).getDate() >= new Date().getDate(),
       ).length || 0)
     );
   }, 0);
