@@ -56,7 +56,7 @@ export const RegisterFormSchema = z
     path: ["confirmPassword"],
   });
 
-export const CreateVenueSchema = z.object({
+export const ManageVenueSchema = z.object({
   // Venue details
   name: z
     .string()

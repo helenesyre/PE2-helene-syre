@@ -1,7 +1,7 @@
 "use client";
 import { useAuth } from "@/app/_lib/stores";
 import Button from "@/app/_components/ui/Button";
-import { CreateVenueSchema } from "@/app/_lib/schema";
+import { ManageVenueSchema } from "@/app/_lib/schema";
 import { countWords } from "@/app/_lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm, useWatch } from "react-hook-form";
@@ -38,8 +38,8 @@ export default function EditVenueForm({
     trigger,
     handleSubmit,
     formState: { errors },
-  } = useForm<z.infer<typeof CreateVenueSchema>>({
-    resolver: zodResolver(CreateVenueSchema),
+  } = useForm<z.infer<typeof ManageVenueSchema>>({
+    resolver: zodResolver(ManageVenueSchema),
     defaultValues: {
       ...venueData,
     },
@@ -81,7 +81,7 @@ export default function EditVenueForm({
     try {
       new URL(url);
       const isValid =
-        CreateVenueSchema.shape.media.element.shape.url.safeParse(url);
+        ManageVenueSchema.shape.media.element.shape.url.safeParse(url);
       if (!isValid.success) {
         setIsUrlValid(false);
         return false;
