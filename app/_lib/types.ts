@@ -2,8 +2,8 @@ import { LucideIcon } from "lucide-react";
 
 // Reusable types
 export type ImageData = {
-  url: string;
-  alt: string;
+  url?: string;
+  alt?: string;
 };
 
 export type PaginationMeta = {
@@ -101,13 +101,13 @@ export type VenueMeta = {
 };
 
 export type VenueLocation = {
-  address: string;
-  city: string;
-  zip: string;
-  country: string;
-  continent: string;
-  lat: number;
-  lng: number;
+  address?: string;
+  city?: string;
+  zip?: string;
+  country?: string;
+  continent?: string;
+  lat?: number;
+  lng?: number;
 };
 
 export type VenueOwner = {
@@ -167,4 +167,33 @@ export type BookingsResponseData = {
 export type BookingsResponse = {
   data: BookingsResponseData[];
   meta: PaginationMeta;
+};
+
+// Create venue
+export type CreateVenueRequest = {
+  name: string;
+  description: string;
+  media?: ImageData[];
+  price: number;
+  maxGuests: number;
+  rating?: number;
+  meta?: VenueMeta;
+  location?: VenueLocation;
+};
+
+export type CreateVenueResponseData = {
+  id: string;
+  name: string;
+  description: string;
+  media?: ImageData[];
+  price: number;
+  maxGuests: number;
+  rating?: number;
+  meta?: VenueMeta;
+  location?: VenueLocation;
+};
+
+export type CreateVenueResponse = {
+  data: CreateVenueResponseData;
+  meta: object;
 };

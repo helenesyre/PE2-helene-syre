@@ -1,4 +1,11 @@
 import { ProfileResponse, VenuesResponse, SingleVenueResponse } from "./types";
+import {
+  ProfileResponse,
+  VenuesResponse,
+  SingleVenueResponse,
+  CreateVenueRequest,
+  CreateVenueResponse,
+} from "./types";
 
 // Fetch user profile from the API
 export function getProfile(
@@ -110,6 +117,7 @@ export function getVenueById(venueId: string): Promise<SingleVenueResponse> {
     });
 }
 
+// Fetch venues created by a specific profile from the API
 export function getVenuesByProfile(
   profileId: string,
   accessToken: string,
@@ -133,6 +141,40 @@ export function getVenuesByProfile(
       }
       if (!res.ok) {
         throw new Error(`Failed to fetch venues`);
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
+// Create a new venue using the API
+export function createVenue({
+  accessToken,
+  data,
+}: {
+  accessToken: string;
+  data: CreateVenueRequest;
+}): Promise<CreateVenueResponse> {
+  const reqUrl = new URL(
+    process.env.NEXT_PUBLIC_BASE_API_URL + "holidaze/venues",
+  );
+  return fetch(reqUrl.toString(), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken || ""}`,
+      "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => {
+      if (res.status === 400 || res.status === 401 || res.status === 404) {
+        throw new Error("Invalid form");
+      }
+      if (!res.ok) {
+        throw new Error(`Failed to authenticate`);
       }
       return res.json();
     })

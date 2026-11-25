@@ -20,3 +20,10 @@ export function formatVenueDate(dateString?: string) {
   if (!dateString) return "No date";
   return formattedDate;
 }
+
+// Count the words in a string
+export function countWords(text?: string) {
+  const trimmed = text?.trim() ?? "";
+  if (trimmed === "") return 0;
+  return trimmed.split(/\s+/).length;
+}

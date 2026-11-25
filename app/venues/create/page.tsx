@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import CreateVenueForm from "@/app/venues/create/CreateVenueForm";
+import { Suspense } from "react";
 
 export default function CreateVenue() {
   return (
@@ -21,7 +22,9 @@ export default function CreateVenue() {
       </div>
       <div className="flex flex-col-reverse lg:flex-row gap-10">
         <article className="flex-4">
-          <CreateVenueForm />
+          <Suspense fallback={null}>
+            <CreateVenueForm />
+          </Suspense>
         </article>
         {/* Profile preview */}
         <aside className="flex-3 mb-0 lg:mb-8">
