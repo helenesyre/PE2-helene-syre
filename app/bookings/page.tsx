@@ -4,6 +4,7 @@ import UpcomingBookings from "./UpcomingBookings";
 import RecentBookings from "./RecentBookings";
 import { CirclePlus } from "lucide-react";
 import Button from "../_components/ui/Button";
+import { Suspense } from "react";
 
 export default function Bookings() {
   return (
@@ -55,8 +56,12 @@ export default function Bookings() {
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <UpcomingBookings />
-          <RecentBookings />
+          <Suspense>
+            <UpcomingBookings />
+          </Suspense>
+          <Suspense>
+            <RecentBookings />
+          </Suspense>
         </div>
       </section>
     </section>
