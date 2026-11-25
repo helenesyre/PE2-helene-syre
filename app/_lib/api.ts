@@ -4,8 +4,8 @@ import {
   SingleVenueResponse,
   LoginRequest,
   LoginResponse,
-  CreateVenueRequest,
-  CreateVenueResponse,
+  ManageVenueRequest,
+  ManageVenueResponse,
   RegisterRequest,
 } from "./types";
 
@@ -209,13 +209,49 @@ export function createVenue({
   data,
 }: {
   accessToken: string;
-  data: CreateVenueRequest;
-}): Promise<CreateVenueResponse> {
+  data: ManageVenueRequest;
+}): Promise<ManageVenueResponse> {
   const reqUrl = new URL(
     process.env.NEXT_PUBLIC_BASE_API_URL + "holidaze/venues",
   );
   return fetch(reqUrl.toString(), {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken || ""}`,
+      "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => {
+      if (res.status === 400 || res.status === 401 || res.status === 404) {
+        throw new Error("Invalid form");
+      }
+      if (!res.ok) {
+        throw new Error(`Failed to authenticate`);
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
+// Create a new venue using the API
+export function updateVenue({
+  accessToken,
+  id,
+  data,
+}: {
+  accessToken: string;
+  id: string;
+  data: ManageVenueRequest;
+}): Promise<ManageVenueResponse> {
+  const reqUrl = new URL(
+    process.env.NEXT_PUBLIC_BASE_API_URL + "holidaze/venues/" + id,
+  );
+  return fetch(reqUrl.toString(), {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken || ""}`,

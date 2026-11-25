@@ -1,8 +1,32 @@
+"use client";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import EditVenueForm from "@/app/venues/edit/[venue_id]/EditVenueForm";
+import EditVenueForm from "@/app/_components/forms/EditVenueForm";
+import { useParams } from "next/navigation";
+import { SingleVenueResponse } from "@/app/_lib/types";
+import { getVenueById } from "@/app/_lib/api";
+import { useQuery } from "@tanstack/react-query";
 
 export default function EditVenue() {
+  const { venue_id: venueId } = useParams<{ venue_id: string }>();
+  const {
+    isPending,
+    isError,
+    data: venueData,
+    error,
+  } = useQuery<SingleVenueResponse>({
+    queryKey: ["venue", venueId],
+    queryFn: () => getVenueById(venueId),
+  });
+
+  if (isPending) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>{error?.message || "An error occurred"}</p>;
+  }
+
   return (
     <section className="mt-12 mb-24 px-6 md:px-10 lg:px-16 xl:px-40">
       <div className="flex flex-col gap-2 mb-18">
@@ -21,7 +45,7 @@ export default function EditVenue() {
       </div>
       <div className="flex flex-col-reverse lg:flex-row gap-10">
         <article className="flex-4">
-          <EditVenueForm />
+          <EditVenueForm venueData={venueData.data} />
         </article>
         {/* Profile preview */}
         <aside className="flex-3 mb-0 lg:mb-8">

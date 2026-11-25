@@ -170,7 +170,7 @@ export type BookingsResponse = {
 };
 
 // Create venue
-export type CreateVenueRequest = {
+export type ManageVenueRequest = {
   name: string;
   description: string;
   media?: ImageData[];
@@ -181,7 +181,7 @@ export type CreateVenueRequest = {
   location?: VenueLocation;
 };
 
-export type CreateVenueResponseData = {
+export type ManageVenueResponseData = {
   id: string;
   name: string;
   description: string;
@@ -193,7 +193,7 @@ export type CreateVenueResponseData = {
   location?: VenueLocation;
 };
 
-export type CreateVenueResponse = {
-  data: CreateVenueResponseData;
+export type ManageVenueResponse = {
+  data: ManageVenueResponseData;
   meta: object;
 };

@@ -10,12 +10,20 @@ import z from "zod";
 import Image from "next/image";
 import { CircleAlert, X } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
-import { createVenue } from "@/app/_lib/api";
+import { updateVenue } from "@/app/_lib/api";
 import { ToastType, useToast } from "@/app/_lib/stores";
 import { useRouter } from "next/navigation";
-import { CreateVenueRequest, CreateVenueResponse } from "@/app/_lib/types";
+import {
+  ManageVenueRequest,
+  ManageVenueResponse,
+  VenueResponseData,
+} from "@/app/_lib/types";
 
-export default function CreateVenueForm() {
+export default function EditVenueForm({
+  venueData,
+}: {
+  venueData: VenueResponseData;
+}) {
   const { addMessage } = useToast();
   const { data: authData } = useAuth();
   const router = useRouter();
@@ -33,22 +41,20 @@ export default function CreateVenueForm() {
   } = useForm<z.infer<typeof CreateVenueSchema>>({
     resolver: zodResolver(CreateVenueSchema),
     defaultValues: {
-      media: [],
-      meta: { wifi: false, parking: false, breakfast: false, pets: false },
-      location: { lat: undefined, lng: undefined },
+      ...venueData,
     },
     mode: "onTouched",
   });
 
   const mutation = useMutation<
-    CreateVenueResponse,
+    ManageVenueResponse,
     Error,
-    { accessToken: string; data: CreateVenueRequest }
+    { accessToken: string; id: string; data: ManageVenueRequest }
   >({
-    mutationFn: createVenue,
+    mutationFn: updateVenue,
     onSuccess: (response) => {
       addMessage({
-        message: "Successfully created venue",
+        message: "Successfully updated venue",
         duration: 10000,
         type: ToastType.SUCCESS,
       });
@@ -108,7 +114,11 @@ export default function CreateVenueForm() {
     <form
       className="flex flex-col gap-8 w-full"
       onSubmit={handleSubmit((data) =>
-        mutation.mutate({ accessToken: authData?.accessToken || "", data }),
+        mutation.mutate({
+          accessToken: authData?.accessToken || "",
+          id: venueData.id,
+          data,
+        }),
       )}
     >
       {/* Venue details */}
@@ -260,7 +270,7 @@ export default function CreateVenueForm() {
           {fields.map((field, index) => {
             return (
               <div
-                key={index}
+                key={field.id}
                 className={`relative ${index === 0 ? "col-span-2 row-span-2" : "col-span-1 row-span-1"}`}
               >
                 <Image
@@ -272,6 +282,7 @@ export default function CreateVenueForm() {
                   className="object-cover h-full w-full rounded-2xl"
                 />
                 <button
+                  type="button"
                   onClick={() => handleRemoveImage(index)}
                   className="absolute top-3 right-3 bg-red-800 text-white rounded-full z-10 w-7 h-7 flex items-center justify-center cursor-pointer"
                 >
@@ -571,7 +582,7 @@ export default function CreateVenueForm() {
           Cancel
         </Button>
         <Button variant="medium" color="primary" type="submit">
-          Create Venue
+          Update Venue
         </Button>
       </div>
     </form>

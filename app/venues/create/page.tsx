@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import CreateVenueForm from "@/app/venues/create/CreateVenueForm";
+import CreateVenueForm from "@/app/_components/forms/CreateVenueForm";
 import { Suspense } from "react";
 
 export default function CreateVenue() {
