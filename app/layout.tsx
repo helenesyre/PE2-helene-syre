@@ -41,7 +41,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </Suspense>
         <ToastProvider />
         <main className="flex flex-col flex-1">
-          <Providers>{children}</Providers>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Providers>{children}</Providers>
+          </Suspense>
         </main>
         {/* Footer */}
         <Footer />
