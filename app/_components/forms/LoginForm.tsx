@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleAlert, EyeClosed, LogIn } from "lucide-react";
+import { CircleAlert, Eye, EyeClosed, LogIn } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormSchema } from "@/app/_lib/schema";
@@ -10,11 +10,17 @@ import { ToastType, useAuth, useToast } from "@/app/_lib/stores";
 import { useRouter } from "next/navigation";
 import Button from "@/app/_components/ui/Button";
 import { postLogin } from "@/app/_lib/api";
+import { useState } from "react";
 
 export default function LoginForm() {
   const { setData } = useAuth();
   const { addMessage } = useToast();
   const router = useRouter();
+
+  const [showPassword, setShowPassword] = useState(false);
+  function togglePasswordVisibility() {
+    setShowPassword((prev) => !prev);
+  }
 
   const {
     register,
@@ -81,7 +87,7 @@ export default function LoginForm() {
         </label>
         <div className="relative">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             {...register("password")}
             id="password"
             autoComplete="current-password"
@@ -91,10 +97,15 @@ export default function LoginForm() {
           {/* Button to toggle password visibility */}
           <button
             type="button"
-            aria-label="Show password"
+            aria-label={showPassword ? "Hide password" : "Show password"}
             className="absolute right-4 inset-y-0 inset-e-0 cursor-pointer text-deep-forest-400"
+            onClick={togglePasswordVisibility}
           >
-            <EyeClosed size={20} strokeWidth={2} />
+            {showPassword ? (
+              <Eye size={20} strokeWidth={2} />
+            ) : (
+              <EyeClosed size={20} strokeWidth={2} />
+            )}
           </button>
         </div>
         <div className="flex gap-2 ml-4">

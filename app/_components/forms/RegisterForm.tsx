@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleAlert, EyeClosed, UserRoundPlus } from "lucide-react";
+import { CircleAlert, Eye, EyeClosed, UserRoundPlus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterFormSchema } from "@/app/_lib/schema";
@@ -10,10 +10,20 @@ import { ToastType, useToast } from "@/app/_lib/stores";
 import { useRouter } from "next/navigation";
 import Button from "@/app/_components/ui/Button";
 import { postRegister } from "@/app/_lib/api";
+import { useState } from "react";
 
 export default function RegisterForm() {
   const { addMessage } = useToast();
   const router = useRouter();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  function togglePasswordVisibility() {
+    setShowPassword((prev) => !prev);
+  }
+  function toggleConfirmPasswordVisibility() {
+    setShowConfirmPassword((prev) => !prev);
+  }
 
   const {
     register,
@@ -106,7 +116,7 @@ export default function RegisterForm() {
         </label>
         <div className="relative">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             {...register("password")}
             id="password"
             name="password"
@@ -117,10 +127,15 @@ export default function RegisterForm() {
           {/* Button to toggle password visibility */}
           <button
             type="button"
-            aria-label="Show password"
+            aria-label={showPassword ? "Hide password" : "Show password"}
             className="absolute right-4 inset-y-0 inset-e-0 cursor-pointer text-deep-forest-400"
+            onClick={togglePasswordVisibility}
           >
-            <EyeClosed size={20} strokeWidth={2} />
+            {showPassword ? (
+              <Eye size={20} strokeWidth={2} />
+            ) : (
+              <EyeClosed size={20} strokeWidth={2} />
+            )}
           </button>
         </div>
         <div className="flex gap-2 ml-4">
@@ -142,7 +157,7 @@ export default function RegisterForm() {
         </label>
         <div className="relative">
           <input
-            type="password"
+            type={showConfirmPassword ? "text" : "password"}
             {...register("confirmPassword")}
             id="confirm-password"
             autoComplete="current-password"
@@ -152,10 +167,15 @@ export default function RegisterForm() {
           {/* Button to toggle password visibility */}
           <button
             type="button"
-            aria-label="Show password"
+            aria-label={showConfirmPassword ? "Hide password" : "Show password"}
             className="absolute right-4 inset-y-0 inset-e-0 cursor-pointer text-deep-forest-400"
+            onClick={toggleConfirmPasswordVisibility}
           >
-            <EyeClosed size={20} strokeWidth={2} />
+            {showConfirmPassword ? (
+              <Eye size={20} strokeWidth={2} />
+            ) : (
+              <EyeClosed size={20} strokeWidth={2} />
+            )}
           </button>
         </div>
         <div className="flex gap-2 ml-4">
