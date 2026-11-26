@@ -1,5 +1,5 @@
 "use client";
-import { VenueDetailsCalendar } from "./VenueDetailsCalendar";
+import { CreateBookingForm } from "../forms/CreateBookingForm";
 import VenuePolicies from "@/app/_components/grids/VenuePolicies";
 import { getVenueById } from "@/app/_lib/api";
 import { SingleVenueResponse } from "@/app/_lib/types";
@@ -31,15 +31,16 @@ export default function VenueDetails() {
 
   const venueCreated = formatDate(venueData.data.created);
   const venueUpdated = formatDate(venueData.data.updated);
+  console.log(venueData.data);
 
   return (
     <section className="mt-6 md:mt-10 xl:mt-12 mb-24 px-6 md:px-10 lg:px-16 xl:px-40">
       {/* Image Gallery */}
       <VenueDetailsImages venueData={venueData.data} />
-      <section className="mt-12 grid gap-20 lg:grid-cols-12">
+      <section className="mt-12 flex flex-col gap-20 lg:flex-row">
         <VenueDetailsInformation venueData={venueData.data} />
         {/* Booking calendar - placeholder for future implementation */}
-        <VenueDetailsCalendar venueData={venueData.data} />
+        <CreateBookingForm venueData={venueData.data} />
       </section>
       <section className="flex flex-col gap-8 mt-20">
         <hr className="border border-cloud-white-600" />

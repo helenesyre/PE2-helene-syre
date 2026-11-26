@@ -111,3 +111,10 @@ export const ManageVenueSchema = z.object({
     lng: z.optional(z.number()),
   }),
 });
+
+export const CreateBookingSchema = z.object({
+  dateFrom: z.string().trim(),
+  dateTo: z.string().trim(),
+  venueId: z.string().trim(),
+  guests: z.number().min(1, "Guests must be at least 1"),
+});

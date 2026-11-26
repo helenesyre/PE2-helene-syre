@@ -9,6 +9,8 @@ import {
   RegisterRequest,
   ProfileBookingResponseData,
   ApiResponse,
+  CreateBookingResponseData,
+  CreateBookingRequest,
 } from "./types";
 
 // Fetch user profile from the API
@@ -95,12 +97,12 @@ export function getVenues({
 
 // Fetch a single venue by ID from the API
 export function getVenueById(venueId: string): Promise<SingleVenueResponse> {
-  const apiUrl =
-    process.env.NEXT_PUBLIC_BASE_API_URL +
-    "holidaze/venues/" +
-    venueId +
-    "?_owner=true";
-  return fetch(apiUrl, {
+  const apiUrl = new URL(
+    process.env.NEXT_PUBLIC_BASE_API_URL + "holidaze/venues/" + venueId,
+  );
+  apiUrl.searchParams.set("_owner", "true");
+  apiUrl.searchParams.set("_bookings", "true");
+  return fetch(apiUrl.toString(), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -271,7 +273,7 @@ export function createVenue({
     });
 }
 
-// Create a new venue using the API
+// Update venue using the API
 export function updateVenue({
   accessToken,
   id,
@@ -331,6 +333,40 @@ export function getBookingsByProfile(
       }
       if (!res.ok) {
         throw new Error(`Failed to fetch venues`);
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
+// Create a booking using the API
+export function createBooking({
+  accessToken,
+  data,
+}: {
+  accessToken: string;
+  data: CreateBookingRequest;
+}): Promise<ApiResponse<CreateBookingResponseData>> {
+  const reqUrl = new URL(
+    process.env.NEXT_PUBLIC_BASE_API_URL + "holidaze/bookings",
+  );
+  return fetch(reqUrl.toString(), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken || ""}`,
+      "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => {
+      if (res.status === 400 || res.status === 401 || res.status === 404) {
+        throw new Error("Invalid form");
+      }
+      if (!res.ok) {
+        throw new Error(`Failed to authenticate`);
       }
       return res.json();
     })

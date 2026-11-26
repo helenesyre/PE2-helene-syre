@@ -198,7 +198,7 @@ export type ManageVenueResponse = {
   meta: object;
 };
 
-// profile bookings
+// Profile bookings
 export type ProfileBookingResponseData = {
   id: string;
   dateFrom: string;
@@ -209,6 +209,24 @@ export type ProfileBookingResponseData = {
   venue: Omit<VenueResponseData, "bookings">;
 };
 
+// Create booking
+export type CreateBookingRequest = {
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  venueId: string;
+};
+
+export type CreateBookingResponseData = {
+  id: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  created: string;
+  updated: string;
+};
+
+// Generic API response type
 export type ApiResponse<T> = {
   data: T;
   meta: object;

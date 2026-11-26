@@ -15,11 +15,11 @@ export function VenueDetailsInformation({
   venueData: VenueResponseData;
 }) {
   return (
-    <article className="col-span-8 flex flex-col gap-10">
+    <article className="flex flex-col gap-10 flex-1">
       {/* Venue information */}
       <section className="flex flex-col gap-4">
         <h1>{venueData.name}</h1>
-        <div className="flex flex-col lg:flex-row justify-between">
+        <div className="flex flex-col lg:flex-row flex-wrap gap-2 justify-between">
           <div className="flex items-center gap-4">
             <span className="lead-text text-ocean-700">
               {venueData.maxGuests} guests・{venueData.location.city},{" "}
