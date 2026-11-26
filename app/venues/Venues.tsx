@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import VenuesGrid from "../_components/grids/VenuesGrid";
 import Button from "../_components/ui/Button";
 import { VenuesResponse } from "../_lib/types";
@@ -115,16 +115,26 @@ export default function Venues() {
 
         {/* Dropdown filter */}
         <div className="mb-12 md:mb-0 w-full md:w-fit">
-          <select
-            onChange={handleSortChange}
-            value={sortValue}
-            className="w-full md:w-fit bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none"
-          >
-            <option value="created">Newest</option>
-            <option value="lowestPrice">Lowest Price</option>
-            <option value="highestPrice">Highest Price</option>
-            <option value="rating">Best rating</option>
-          </select>
+          <label htmlFor="sort" className="sr-only">
+            Sort by
+          </label>
+          <div className="relative w-full md:w-fit">
+            <select
+              onChange={handleSortChange}
+              value={sortValue}
+              className="w-full md:w-fit appearance-none bg-cloud-white-50 border border-cloud-white-600 rounded-md py-2 pl-4 pr-10 cursor-pointer focus:outline-none focus:ring-1 focus:ring-deep-forest-500"
+            >
+              <option value="created">Newest</option>
+              <option value="lowestPrice">Lowest Price</option>
+              <option value="highestPrice">Highest Price</option>
+              <option value="rating">Best rating</option>
+            </select>
+            <ChevronDown
+              size={20}
+              strokeWidth={1.5}
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-deep-forest-500"
+            />
+          </div>
         </div>
       </div>
 
