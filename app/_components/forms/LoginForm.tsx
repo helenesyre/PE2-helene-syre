@@ -26,6 +26,7 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<z.infer<typeof LoginFormSchema>>({
     resolver: zodResolver(LoginFormSchema),
     mode: "onBlur",
@@ -40,6 +41,7 @@ export default function LoginForm() {
         duration: 10000,
         type: ToastType.SUCCESS,
       });
+      reset();
       router.push("/");
     },
     onError: (error) => {
