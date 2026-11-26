@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import EditVenueForm from "@/app/_components/forms/EditVenueForm";
+import DeleteVenue from "@/app/_components/cards/DeleteVenue";
 import { useParams } from "next/navigation";
 import { SingleVenueResponse } from "@/app/_lib/types";
 import { getVenueById } from "@/app/_lib/api";
@@ -44,8 +45,9 @@ export default function EditVenue() {
         </p>
       </div>
       <div className="flex flex-col-reverse lg:flex-row gap-10">
-        <article className="flex-4">
+        <article className="flex-4 flex flex-col gap-8">
           <EditVenueForm venueData={venueData.data} />
+          <DeleteVenue venueId={venueId} />
         </article>
         {/* Profile preview */}
         <aside className="flex-3 mb-0 lg:mb-8">

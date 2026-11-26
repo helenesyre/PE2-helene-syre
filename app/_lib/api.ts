@@ -151,6 +151,38 @@ export function getVenuesByProfile(
     });
 }
 
+// Delete a venue using the API
+export function deleteVenue({
+  accessToken,
+  venueId,
+}: {
+  accessToken: string;
+  venueId: string;
+}): Promise<void> {
+  const reqUrl = new URL(
+    process.env.NEXT_PUBLIC_BASE_API_URL + `holidaze/venues/${venueId}`,
+  );
+  return fetch(reqUrl.toString(), {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken || ""}`,
+      "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+    },
+  })
+    .then((res) => {
+      if (res.status === 400 || res.status === 401 || res.status === 404) {
+        throw new Error("Venue not found");
+      }
+      if (!res.ok) {
+        throw new Error(`Failed to delete venue`);
+      }
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
 // Login
 export function postLogin(data: LoginRequest): Promise<LoginResponse> {
   const apiUrl =

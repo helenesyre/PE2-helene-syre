@@ -24,6 +24,7 @@ export enum ButtonColorVariant {
   borderPrimary = "bg-transparent border border-ocean-700 text-ocean-700 hover:bg-ocean-50",
   borderSecondary = "bg-transparent border border-deep-forest-700 text-deep-forest-700 hover:bg-deep-forest-50",
   ghost = "bg-transparent text-deep-forest-500 hover:bg-stone-50",
+  delete = "bg-red-900 text-cloud-white-500 hover:bg-red-800",
 }
 // Button color variant type based on the keys of the ButtonColorVariant enum
 export type ButtonColorVariantType = keyof typeof ButtonColorVariant;
