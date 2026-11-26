@@ -231,3 +231,21 @@ images: {
 - It moved `setSortValue` into `handleSortChange` so the select's `onChange` only calls one function.
 
 **After using AI:** I updated the venues page to use the new query key with `search`, `sortBy`, and `order`, split the search input into `searchInput` and `search`, added `placeholderData: keepPreviousData`, and removed the `invalidateQueries` calls. The sort dropdown now works correctly and the list updates immediately when the sort changes.
+
+---
+
+## Word counter in CreateVenueForm
+
+**Tool used:** Claude Code (Claude Opus 5.5) in VS Code
+
+**Date:** 25 November 2026
+
+**Purpose:** I wanted to add a word counter that counted words and not characters in the CreateVenueForm description field.
+
+**Outcome:**
+
+- It explained that Zod's `.min()` and `.max()` on a string always count characters, so a word limit needs a custom check.
+- It replaced `.max(160, ...)` on `description` in `schema.ts` with `.refine((value) => countWords(value) <= 160, ...)`, which reuses the `countWords` helper from `_lib/utils.ts`.
+- It pointed out that `.min(8, ...)` still counts characters, and that the same `.refine()` pattern can be used for a minimum word count.
+
+**After using AI:** I decided to implement the `.refine()` check for my max word count, but decided to keep the character-based `.min()` for the minimum length requirement, as it ensures a reasonable description length even if the word count is low.
