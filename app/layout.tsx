@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Unbounded } from "next/font/google";
+import "@daypicker/react/style.css";
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
