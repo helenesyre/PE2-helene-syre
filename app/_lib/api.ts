@@ -338,3 +338,35 @@ export function getBookingsByProfile(
       throw error;
     });
 }
+
+// Delete a booking using the API
+export function deleteBooking({
+  accessToken,
+  bookingId,
+}: {
+  accessToken: string;
+  bookingId: string;
+}): Promise<void> {
+  const reqUrl = new URL(
+    process.env.NEXT_PUBLIC_BASE_API_URL + `holidaze/bookings/${bookingId}`,
+  );
+  return fetch(reqUrl.toString(), {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken || ""}`,
+      "X-Noroff-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+    },
+  })
+    .then((res) => {
+      if (res.status === 400 || res.status === 401 || res.status === 404) {
+        throw new Error("Booking not found");
+      }
+      if (!res.ok) {
+        throw new Error(`Failed to delete booking`);
+      }
+    })
+    .catch((error) => {
+      throw error;
+    });
+}

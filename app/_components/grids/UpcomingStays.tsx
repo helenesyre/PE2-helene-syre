@@ -11,6 +11,7 @@ export default function UpcomingStays() {
     isPending,
     error,
     data: bookingsData,
+    refetch,
   } = useQuery({
     queryKey: ["bookings", authData?.name],
     queryFn: () =>
@@ -22,11 +23,19 @@ export default function UpcomingStays() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-6">
-      {bookingsData.data
-        .filter((booking) => booking.dateFrom >= new Date().toISOString())
-        .map((booking, key) => (
-          <BookingCard key={key} booking={booking} />
-        ))}
+      {bookingsData?.data.filter(
+        (booking) => booking.dateFrom >= new Date().toISOString(),
+      ).length > 0 ? (
+        bookingsData.data
+          .filter((booking) => booking.dateFrom >= new Date().toISOString())
+          .map((booking, key) => (
+            <BookingCard key={key} booking={booking} refetch={refetch} />
+          ))
+      ) : (
+        <p className="col-span-full text-center text-stone-500 mb-10">
+          No venues found.
+        </p>
+      )}
     </div>
   );
 }
