@@ -197,3 +197,19 @@ export type ManageVenueResponse = {
   data: ManageVenueResponseData;
   meta: object;
 };
+
+// profile bookings
+export type ProfileBookingResponseData = {
+  id: string;
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  updated: string;
+  created: string;
+  venue: Omit<VenueResponseData, "bookings">;
+};
+
+export type ApiResponse<T> = {
+  data: T;
+  meta: object;
+};

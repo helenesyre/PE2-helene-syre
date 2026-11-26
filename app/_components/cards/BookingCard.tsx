@@ -1,17 +1,24 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
-import { CalendarDays, Users } from "lucide-react";
+import { CalendarDays, CalendarX, Users } from "lucide-react";
 import { Sparkles } from "lucide-react";
 import Tag from "../ui/Tags";
 import Button from "../ui/Button";
+import { ProfileBookingResponseData } from "@/app/_lib/types";
+import { formatVenueDate } from "@/app/_lib/utils";
 
 // Product card component
-export default function BookingCard() {
+export default function BookingCard({
+  booking,
+}: {
+  booking: ProfileBookingResponseData;
+}) {
   return (
     <div className="p-3 bg-cloud-white-50 rounded-lg flex flex-col xl:flex-row gap-4">
       {/* Image */}
       <Link
-        href="/venues/1"
+        href={`/venues/${booking.venue.id}`}
         className="relative w-full xl:w-64 2xl:w-80 h-64 md:h-50 xl:h-full shrink-0"
       >
         <Tag
@@ -20,10 +27,10 @@ export default function BookingCard() {
           className="absolute top-3 left-3 z-1"
         >
           <Sparkles size={16} strokeWidth={1.5} />
-          4.6
+          {(booking.venue.rating ?? 0).toFixed(1)}
         </Tag>
         <Image
-          src="/images/placeholder.png"
+          src={booking.venue.media?.[0]?.url || "/images/placeholder.png"}
           alt="Venue"
           fill
           loading="eager"
@@ -36,28 +43,46 @@ export default function BookingCard() {
         <div>
           <div>
             <span className="label-text-lowercase text-ocean-700">
-              City・Country
+              {booking.venue.location?.city}・{booking.venue.location?.country}
             </span>
-            <h3>Venue Name</h3>
+            <h3 className="break-all">{booking.venue.name}</h3>
           </div>
           <div className="flex flex-col gap-2 my-4">
             <div className="flex items-center gap-2">
               <CalendarDays size={24} strokeWidth={1.5} className="shrink-0" />
-              <p>13.nov 2026 - 25. nov 2026</p>
+              <p>
+                {formatVenueDate(booking.dateFrom)} -{" "}
+                {formatVenueDate(booking.dateTo)}
+              </p>
             </div>
             <div className="flex items-center gap-2">
               <Users size={24} strokeWidth={1.5} className="shrink-0" />
-              <p>2 guests</p>
+              <p>{booking.guests} guests</p>
             </div>
           </div>
         </div>
         {/* Price and view button */}
-        <div className="flex items-center justify-between pt-3 border-t border-cloud-white-600">
-          <div className="flex items-center gap-2">
-            <p className="price-text">NOK 2450</p>
-            <p className="small-text text-stone-700">/ night</p>
-          </div>
-          <Button variant="small" color="primary" href={"/venues/1"}>
+        <div className="flex items-center gap-2 mb-4">
+          <p className="price-text">NOK {booking.venue.price}</p>
+          <p className="small-text text-stone-700">/ night</p>
+        </div>
+        {/* Card action buttons */}
+        <div className="flex gap-3 pt-3 border-t border-cloud-white-600">
+          <Button
+            variant="small"
+            color="borderPrimary"
+            width="full"
+            href={`/venues/edit/${booking.venue.id}`}
+          >
+            <CalendarX size={18} strokeWidth={2} className="shrink-0" />
+            Cancel
+          </Button>
+          <Button
+            variant="small"
+            color="primary"
+            width="full"
+            href={`/venues/${booking.venue.id}`}
+          >
             View
           </Button>
         </div>
