@@ -1,4 +1,5 @@
 import { ArrowUpRight, Building, MapPinned, Search } from "lucide-react";
+import HomeHeaderLinks from "./_components/grids/HomeHeaderLinks";
 import Image from "next/image";
 import DestinationGrid from "./_components/grids/DestinationGrid";
 import PopularPlacesGrid from "./_components/grids/PopularPlacesGrid";
@@ -21,9 +22,10 @@ export default function Home() {
         {/* Hero title and description */}
         <div className="absolute inset-0 flex flex-col gap-2 justify-center items-center text-center px-12 ">
           <h1 className="relative text-cloud-white-500">Find your next stay</h1>
-          <p className="relative lead-text text-stone-300">
+          <p className="relative lead-text text-stone-300 mb-10">
             From city flats to cabins by the fjord, book it in minutes.
           </p>
+          <HomeHeaderLinks />
         </div>
       </section>
       {/* Tourism section */}
@@ -41,7 +43,10 @@ export default function Home() {
         <DestinationGrid />
       </section>
       {/* How it works section */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 my-31.5 px-6 md:px-10 lg:px-16">
+      <section
+        id="how-it-works"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-12 my-31.5 px-6 md:px-10 lg:px-16"
+      >
         {/* Image */}
         <div className="relative w-full aspect-4/3 lg:aspect-9/10 md:h-full md:min-h-120 rounded-2xl overflow-hidden">
           <Image

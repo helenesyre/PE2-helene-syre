@@ -32,7 +32,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${unbounded.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      className={`${poppins.variable} ${unbounded.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col relative">
         {/* Navigation */}
