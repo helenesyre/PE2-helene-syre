@@ -7,7 +7,7 @@ import {
   VenueResponseData,
   CreateBookingRequest,
 } from "@/app/_lib/types";
-import { DateRange, DayPicker } from "@daypicker/react";
+import { DateRange, DayPicker, getDefaultClassNames } from "@daypicker/react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -66,6 +66,8 @@ export function CreateBookingForm({
     },
   });
 
+  const defaultClassNames = getDefaultClassNames();
+
   return (
     <aside className="sticky top-10 self-start col-span-1 flex flex-col gap-6 p-6 w-fit h-fit bg-cloud-white-50 rounded-2xl">
       <div className="sr-only">
@@ -75,7 +77,7 @@ export function CreateBookingForm({
         </p>
       </div>
       <form
-        className="flex flex-col gap-4 w-fit"
+        className="flex flex-col gap-2 w-fit"
         onSubmit={handleSubmit((data) => {
           if (!authData?.accessToken) return;
           data.dateFrom = selectedRange?.from?.toISOString() || "";
@@ -103,10 +105,26 @@ export function CreateBookingForm({
           selected={selectedRange}
           onSelect={setSelectedRange}
         />
+        <hr className="border-t border-cloud-white-600" />
         <input type="hidden" {...register("venueId")} value={venueData?.id} />
-        <input type="number" {...register("guests")} />
-        <Button variant="medium" color="primary" type="submit">
-          Book now
+        <div className="flex justify-between items-center p-1">
+          <label htmlFor="guests" className="font-normal">
+            Guests
+          </label>
+          <select id="guests" {...register("guests", { valueAsNumber: true })}>
+            {Array.from({ length: venueData?.maxGuests || 1 }, (_, i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex justify-between items-center p-1">
+          <p>Price per night</p>
+          <p className="price-text">${venueData?.price || 0}</p>
+        </div>
+        <Button variant="medium" color="primary" type="submit" className="mt-4">
+          Book
         </Button>
       </form>
     </aside>
